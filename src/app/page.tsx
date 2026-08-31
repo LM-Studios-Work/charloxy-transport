@@ -39,23 +39,16 @@ export default function Home() {
     <ServicesSlider />
 
     <section className="bg-paper py-20 md:py-28">
-      <div className="container-wide">
-        <div className="max-w-4xl">
-          <p className="font-display text-sm uppercase tracking-[.2em] text-gold">Fully Protected Moves</p>
-          <div className="mt-4 flex flex-wrap items-end gap-x-5 gap-y-1">
-            <h2 className="display-tight text-6xl leading-[.9] text-navy md:text-8xl">R150k Transit</h2>
-            <div className="flex items-end gap-4">
-              <h2 className="display-tight text-6xl leading-[.9] text-gold md:text-8xl">Insurance.</h2>
-              <img src="/insurance%20badge.png" alt="R150k Transit Insurance badge" className="mb-1 size-20 object-contain drop-shadow-md md:size-28" />
-            </div>
+      <div className="container-wide grid items-center gap-12 lg:grid-cols-2">
+        <div className="flex flex-col lg:pr-6">
+          <p className="font-display text-sm uppercase tracking-[.14em] text-gold">Fully Protected Moves</p>
+          <div className="mt-2 inline-flex flex-col">
+            <h2 className="display-tight text-5xl text-navy md:text-6xl lg:text-7xl">R150k Transit</h2>
+            <h2 className="display-tight mt-1 text-5xl text-gold md:text-6xl lg:text-7xl">Insurance.</h2>
           </div>
-          <p className="mt-10 max-w-3xl text-lg leading-8 text-ink-muted">We prioritize the safety of your belongings above everything else. For your complete peace of mind, every move with Charloxy Transport is automatically covered by up to R150,000 in Goods in Transit Insurance at no extra cost.</p>
+          <p className="mt-6 max-w-lg text-base leading-7 text-ink-muted">We prioritize the safety of your belongings above everything else. For your complete peace of mind, every move with Charloxy Transport is automatically covered by up to R150,000 in Goods in Transit Insurance at no extra cost.</p>
         </div>
-        <div className="mt-12 grid gap-4 border-t border-navy/15 pt-6 sm:grid-cols-2 lg:grid-cols-4">
-          {['Comprehensive Coverage', 'Zero Deductibles', 'Safe & Secure Delivery', 'Guaranteed Moving Dates'].map(item => (
-            <div key={item} className="flex items-center gap-3 text-sm font-semibold text-navy"><span className="grid size-9 shrink-0 place-items-center rounded-full bg-gold"><Check size={17} /></span>{item}</div>
-          ))}
-        </div>
+        <div className="photo-card relative h-[360px] bg-navy md:h-[480px]"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=85" alt="Professional movers carrying furniture" className="size-full object-cover" /><div className="absolute bottom-5 left-5 right-5 rounded-xl bg-gold p-5"><p className="font-display text-3xl uppercase text-navy">Ready to move?</p><Link href="/quote" className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Get a fast quote <ArrowRight size={16} /></Link></div></div>
       </div>
     </section>
 
