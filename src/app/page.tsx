@@ -34,6 +34,8 @@ export default function Home() {
     </section>
 
 
+    <section className="bg-gold py-5"><div className="container-wide flex flex-col items-center justify-between gap-2 text-center md:flex-row md:text-left"><div className="flex items-center gap-3"><span className="grid size-9 place-items-center rounded-full bg-navy text-background"><Check size={16} /></span><span className="font-display text-2xl uppercase text-navy">Fully Protected Moves</span></div><p className="font-mono text-xs font-semibold uppercase tracking-[.14em] text-navy">R150k Transit Insurance included</p><Link href="/quote" className="inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Move with confidence <ArrowRight size={15} /></Link></div></section>
+
     <ServicesSlider />
 
     <section className="bg-paper py-20 md:py-28">
