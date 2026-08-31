@@ -56,7 +56,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <div className="hidden items-center justify-center gap-8 lg:flex">
+        <div className="hidden flex-1 items-center justify-center gap-8 lg:flex">
           {navigation.map((item) => (
             <Link
               key={item.href}
@@ -68,7 +68,7 @@ export default function Header() {
           ))}
         </div>
 
-        <div className="hidden items-center justify-end gap-5 lg:flex lg:flex-1">
+        <div className="hidden items-center justify-end gap-5 lg:flex">
           <div className="relative">
             <button
               type="button"
@@ -158,7 +158,7 @@ export default function Header() {
               </div>
 
               <div className="mt-auto flex flex-col gap-4 border-t border-navy/15 pt-6">
-                <a href={phoneHref} className="flex items-center gap-3 font-display text-2xl text-navy"><Phone size={25} /> {phoneNumber}</a>
+                <a href={phoneHref} className="flex items-center justify-center gap-3 text-center font-display text-2xl text-navy"><Phone size={25} /> {phoneNumber}</a>
                 <Link href="/quote" onClick={closeMobile} className="rounded-md bg-gold px-5 py-4 text-center font-bold text-navy">Get A Estimate</Link>
               </div>
             </motion.aside>
