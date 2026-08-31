@@ -1,80 +1,15 @@
 import Link from 'next/link';
-import { HomeIcon, Sofa, PackageCheck, HardHat, Box, Briefcase } from 'lucide-react';
+import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 const services = [
-  {
-    title: 'Home & Office Moving',
-    description: 'Whether you are moving down the street or across the city, our team ensures your belongings are packed, transported, and unpacked with care.',
-    icon: HomeIcon,
-  },
-  {
-    title: 'Furniture & Appliance Deliveries',
-    description: 'Bought new furniture or need to move a fridge? We provide safe and fast delivery services for bulky items directly to your door.',
-    icon: Sofa,
-  },
-  {
-    title: 'Collections & Deliveries',
-    description: 'General collection and delivery services for parcels, packages, and important goods that need to arrive on time.',
-    icon: PackageCheck,
-  },
-  {
-    title: 'Building Material Transport',
-    description: 'Reliable transport for construction materials. We help contractors and DIY enthusiasts get their supplies to the site efficiently.',
-    icon: HardHat,
-  },
-  {
-    title: 'General Goods Transport',
-    description: 'Flexible transport solutions for a wide variety of goods. If it fits in our vehicles, we can move it safely.',
-    icon: Box,
-  },
-  {
-    title: 'Transport Services for Businesses',
-    description: 'B2B logistics, property-related jobs, and regular transport contracts to keep your business operations running smoothly.',
-    icon: Briefcase,
-  },
+  ['Home & Office Moving', 'Whether you are moving down the street or across the city, our team ensures your belongings are packed, transported, and unpacked with care.', 'home-office-moving'],
+  ['Furniture & Appliance Deliveries', 'Bought new furniture or need to move a fridge? We provide safe and fast delivery services for bulky items directly to your door.', 'furniture-appliance-deliveries'],
+  ['Collections & Deliveries', 'General collection and delivery services for parcels, packages, and important goods that need to arrive on time.', 'collections-deliveries'],
+  ['Building Material Transport', 'Reliable transport for construction materials. We help contractors and DIY enthusiasts get their supplies to the site efficiently.', 'building-material-transport'],
+  ['General Goods Transport', 'Flexible transport solutions for a wide variety of goods. If it fits in our vehicles, we can move it safely.', 'general-goods-transport'],
+  ['Transport Services for Businesses', 'B2B logistics, property-related jobs, and regular transport contracts to keep your business operations running smoothly.', 'business-transport'],
 ];
 
 export default function Services() {
-  return (
-    <div className="bg-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base font-semibold leading-7 text-[#b7800c]">Our Capabilities</h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-[#03152d] sm:text-4xl">
-            What We Do
-          </p>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            From single item deliveries to complete office relocations, Charloxy Transport offers a diverse range of services tailored to your needs.
-          </p>
-        </div>
-        <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-          <div className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {services.map((service) => (
-              <div key={service.title} className="flex flex-col bg-gray-50 rounded-2xl p-8 ring-1 ring-inset ring-gray-200 hover:shadow-lg transition-shadow">
-                <dt className="flex items-center gap-x-3 text-xl font-semibold leading-7 text-[#03152d]">
-                  <div className="h-12 w-12 flex items-center justify-center rounded-lg bg-[#03152d] shadow-sm">
-                    <service.icon className="h-6 w-6 text-[#b7800c]" aria-hidden="true" />
-                  </div>
-                  {service.title}
-                </dt>
-                <dd className="mt-6 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                  <p className="flex-auto">{service.description}</p>
-                </dd>
-              </div>
-            ))}
-          </div>
-        </div>
-        
-        <div className="mt-24 text-center">
-          <p className="text-lg font-semibold text-[#03152d] mb-6">Need a service not listed here?</p>
-          <Link
-            href="/contact"
-            className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#03152d] shadow-sm ring-1 ring-inset ring-[#03152d] hover:bg-gray-50 transition-colors"
-          >
-            Contact us to discuss your requirements
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
+  return <main className="overflow-hidden bg-background"><section className="container-wide pt-10 pb-20 md:pt-16 md:pb-28"><div className="flex flex-col gap-7 border-b border-navy/15 pb-12 md:flex-row md:items-end md:justify-between"><div><p className="font-display text-sm uppercase tracking-[.15em] text-gold">Our capabilities</p><h1 className="display-tight mt-4 max-w-3xl text-6xl text-navy md:text-8xl">Moving, handled <span className="text-gold">properly.</span></h1></div><p className="max-w-md text-base leading-7 text-ink-muted">From single item deliveries to complete office relocations, Charloxy Transport offers a diverse range of services tailored to your needs.</p></div><div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">{services.map(([title, description, slug], index) => <Link href={`/services/${slug}`} key={title} className="group flex min-h-[310px] flex-col rounded-2xl bg-paper p-7 transition-colors hover:bg-gold md:p-8"><div className="flex items-start justify-between"><span className="font-mono text-xs text-gold group-hover:text-navy/60">0{index + 1}</span><span className="grid size-10 place-items-center rounded-full border border-navy/15 text-navy transition-transform group-hover:rotate-45"><ArrowUpRight size={18} /></span></div><div className="mt-auto"><h2 className="max-w-sm font-display text-4xl uppercase leading-[.95] text-navy">{title}</h2><p className="mt-4 max-w-sm text-sm leading-6 text-ink-muted group-hover:text-navy/75">{description}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-navy">Explore service <ArrowRight size={16} /></span></div></Link>)}</div><div className="mt-16 flex flex-col items-start justify-between gap-5 rounded-2xl bg-navy p-8 md:flex-row md:items-center md:p-10"><p className="font-display text-3xl uppercase text-background md:text-4xl">Need a service not listed here?</p><Link href="/contact" className="inline-flex items-center gap-2 rounded-full bg-gold px-5 py-3 text-sm font-semibold text-navy">Contact us <ArrowRight size={16} /></Link></div></section></main>;
 }
