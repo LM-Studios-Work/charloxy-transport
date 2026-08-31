@@ -41,35 +41,15 @@ export default function Home() {
         <div className="flex flex-col lg:pr-6">
           <p className="font-display text-sm uppercase tracking-[.14em] text-gold">Fully Protected Moves</p>
           <div className="mt-2 inline-flex flex-col">
-            <h2 className="display-tight text-5xl text-navy md:text-6xl lg:text-7xl">
-              R150k Transit
-            </h2>
-            <div className="mt-1 flex w-full items-center justify-between gap-4 sm:justify-start sm:gap-6 lg:mt-2">
-              <h2 className="display-tight text-5xl text-gold md:text-6xl lg:text-7xl">
-                Insurance.
-              </h2>
-              <img src="/insurance%20badge.png" alt="R150k Insurance Badge" className="h-14 w-auto shrink-0 object-contain drop-shadow-sm md:h-20 lg:h-24" />
+            <h2 className="display-tight text-5xl text-navy md:text-6xl lg:text-7xl">R150k Transit</h2>
+            <div className="flex items-end gap-4">
+              <h2 className="display-tight mt-1 text-5xl text-gold md:text-6xl lg:text-7xl">Insurance.</h2>
+              <img src="/insurance%20badge.png" alt="R150k Transit Insurance badge" className="mb-1 size-20 object-contain drop-shadow-md md:size-24" />
             </div>
           </div>
           <p className="mt-6 max-w-lg text-base leading-7 text-ink-muted">We prioritize the safety of your belongings above everything else. For your complete peace of mind, every move with Charloxy Transport is automatically covered by up to R150,000 in Goods in Transit Insurance at no extra cost.</p>
-          <ul className="mt-8 grid w-full max-w-lg gap-4 text-sm font-semibold text-navy sm:grid-cols-2">
-            {['Comprehensive Coverage', 'Zero Deductibles', 'Safe & Secure Delivery', 'Guaranteed Moving Dates'].map(item => (
-              <li key={item} className="flex items-center gap-3">
-                <span className="grid size-7 shrink-0 place-items-center rounded-full bg-gold"><Check size={15} /></span>
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
-        <div className="photo-card relative h-[360px] bg-navy md:h-[480px]">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=85" alt="Professional movers carrying furniture" className="size-full object-cover" />
-          <div className="absolute bottom-5 left-5 right-5 rounded-xl bg-gold p-5">
-            <p className="font-display text-3xl uppercase text-navy">Ready to move?</p>
-            <Link href="/quote" className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">
-              Get a fast quote <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
+        <div className="photo-card relative h-[360px] bg-navy md:h-[480px]"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=85" alt="Professional movers carrying furniture" className="size-full object-cover" /><div className="absolute bottom-5 left-5 right-5 rounded-xl bg-gold p-5"><p className="font-display text-3xl uppercase text-navy">Ready to move?</p><Link href="/quote" className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Get a fast quote <ArrowRight size={16} /></Link></div></div>
       </div>
     </section>
 
