@@ -34,8 +34,6 @@ export default function Home() {
     </section>
 
 
-    <section className="bg-gold py-5"><div className="container-wide flex flex-col items-center justify-between gap-2 text-center md:flex-row md:text-left"><div className="flex items-center gap-3"><span className="grid size-9 place-items-center rounded-full bg-navy text-background"><Check size={16} /></span><span className="font-display text-2xl uppercase text-navy">Fully Protected Moves</span></div><p className="font-mono text-xs font-semibold uppercase tracking-[.14em] text-navy">R150k Transit Insurance included</p><Link href="/quote" className="inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Move with confidence <ArrowRight size={15} /></Link></div></section>
-
     <ServicesSlider />
 
     <section className="bg-paper py-20 md:py-28">
@@ -44,7 +42,10 @@ export default function Home() {
           <p className="font-display text-sm uppercase tracking-[.14em] text-gold">Fully Protected Moves</p>
           <div className="mt-2 inline-flex flex-col">
             <h2 className="display-tight text-5xl text-navy md:text-6xl lg:text-7xl">R150k Transit</h2>
-            <h2 className="display-tight mt-1 text-5xl text-gold md:text-6xl lg:text-7xl">Insurance.</h2>
+            <div className="flex items-end gap-4">
+              <h2 className="display-tight mt-1 text-5xl text-gold md:text-6xl lg:text-7xl">Insurance.</h2>
+              <img src="/insurance%20badge.png" alt="R150k Transit Insurance badge" className="mb-1 size-20 object-contain drop-shadow-md md:size-24" />
+            </div>
           </div>
           <p className="mt-6 max-w-lg text-base leading-7 text-ink-muted">We prioritize the safety of your belongings above everything else. For your complete peace of mind, every move with Charloxy Transport is automatically covered by up to R150,000 in Goods in Transit Insurance at no extra cost.</p>
         </div>
