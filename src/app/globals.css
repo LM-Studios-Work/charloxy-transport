@@ -2,36 +2,35 @@
 @import "tailwindcss/utilities";
 
 @theme inline {
-  --color-navy: #03152d;
-  --color-gold: #b7800c;
-  --color-background: #ffffff;
-  --color-foreground: #03152d;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-navy: var(--navy);
+  --color-gold: var(--gold);
+  --color-paper: var(--paper);
+  --color-ink-muted: var(--ink-muted);
   --font-sans: var(--font-inter);
+  --font-display: var(--font-oswald);
 }
 
 :root {
   --background: #ffffff;
-  --foreground: #03152d;
+  --foreground: #102b3a;
+  --navy: #102b3a;
+  --gold: #f7bd32;
+  --paper: #f4f6f3;
+  --ink-muted: #5d6c72;
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { background: var(--background); }
+body { background: var(--background); color: var(--foreground); font-family: var(--font-inter), Arial, sans-serif; }
+.font-display { font-family: var(--font-oswald), Impact, sans-serif; }
+::selection { background: var(--gold); color: var(--navy); }
 
-/* Glassmorphism utilities */
-@utility glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
+@utility glass { background: color-mix(in srgb, var(--background) 92%, transparent); backdrop-filter: blur(14px); }
+@utility display-tight { font-family: var(--font-oswald), Impact, sans-serif; text-transform: uppercase; letter-spacing: -0.035em; line-height: .92; }
+@utility container-wide { width: min(100% - 2rem, 1200px); margin-inline: auto; }
+@utility photo-card { overflow: hidden; border-radius: 1rem; }
 
-@utility glass-dark {
-  background: rgba(3, 21, 45, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
+@media (min-width: 768px) { .container-wide { width: min(100% - 4rem, 1200px); } }
+@media (min-width: 1024px) { .container-wide { width: min(100% - 6rem, 1200px); } }

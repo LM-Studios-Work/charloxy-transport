@@ -1,153 +1,35 @@
 import Link from 'next/link';
-import { Truck, ShieldCheck, Clock, Package } from 'lucide-react';
+import { ArrowRight, Check, Plus, ShieldCheck } from 'lucide-react';
+
+const services = [
+  { title: 'Home & Office Moving', description: 'Stress-free relocations with professional packing, loading, and safe transport to your new destination.', image: 'https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=900&q=85' },
+  { title: 'Furniture & Appliances', description: 'Safe collection and delivery of your valuable items, ensuring they arrive without a scratch.', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=900&q=85' },
+  { title: 'Commercial & Building', description: 'Transport services for businesses, property jobs, and construction material deliveries.', image: 'https://images.unsplash.com/photo-1586528116493-da8b90c7dc38?auto=format&fit=crop&w=900&q=85' },
+];
+const faqs = ['Do you provide moving blankets to protect the furniture?', 'Do you give fixed rates or charge by the hour?', 'Are tolls all included in the rate?', 'Do you provide storage?'];
 
 export default function Home() {
-  return (
-    <div className="bg-white">
-      {/* Hero section */}
-      <div className="relative isolate overflow-hidden bg-[#03152d]">
-        <img
-          src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-          alt="Moving truck"
-          className="absolute inset-0 -z-10 h-full w-full object-cover opacity-20"
-        />
-        <div className="mx-auto max-w-7xl px-6 pb-24 pt-10 sm:pb-32 lg:flex lg:px-8 lg:py-40">
-          <div className="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl lg:flex-shrink-0 lg:pt-8">
-            <h1 className="mt-10 text-4xl font-bold tracking-tight text-white sm:text-6xl">
-              Reliable. Safe. <span className="text-[#b7800c]">On Time.</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-300">
-              Your trusted partner for home moving, office relocations, and professional transport services across the region. We handle your goods with the utmost care.
-            </p>
-            <div className="mt-10 flex items-center gap-x-6">
-              <Link
-                href="/quote"
-                className="rounded-md bg-[#b7800c] px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-[#9a6a09] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7800c]"
-              >
-                Request a Quote
-              </Link>
-              <Link href="/services" className="text-sm font-semibold leading-6 text-white group flex items-center gap-2">
-                Our Services <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
-              </Link>
-            </div>
-          </div>
+  return <div className="overflow-hidden bg-background">
+    <section className="container-wide pt-8 pb-16 md:pt-12 md:pb-24">
+      <div className="relative min-h-[530px] overflow-hidden rounded-[1.5rem] bg-navy">
+        <img src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=1800&q=85" alt="Charloxy Transport moving truck and team" className="absolute inset-0 size-full object-cover opacity-75" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/35 to-navy/10" />
+        <div className="relative flex min-h-[530px] flex-col justify-end gap-6 p-7 md:p-12 lg:max-w-2xl">
+          <p className="font-display text-sm uppercase tracking-[.15em] text-gold">Reliable. Safe. On time.</p>
+          <h1 className="display-tight max-w-xl text-6xl text-background md:text-8xl">Moving made <span className="text-gold">simple.</span></h1>
+          <p className="max-w-lg text-base leading-7 text-background/80">Your trusted partner for home moving, office relocations, and professional transport services across the region. We handle your goods with the utmost care.</p>
+          <div className="flex flex-wrap gap-3"><Link href="/quote" className="inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-semibold text-navy transition-transform hover:-translate-y-1">Request a Quote <ArrowRight size={18} /></Link><Link href="/services" className="inline-flex items-center rounded-full border border-background/50 px-6 py-3 font-semibold text-background hover:bg-background hover:text-navy">Our Services</Link></div>
         </div>
+        <div className="absolute right-5 top-5 hidden w-64 rounded-2xl bg-background p-5 shadow-xl lg:block"><p className="font-display text-2xl uppercase text-navy">Get moving with confidence.</p><p className="mt-3 text-sm leading-6 text-ink-muted">Goods in Transit insurance up to R150,000.</p><Link href="/quote" className="mt-5 block rounded-full bg-gold px-4 py-3 text-center text-sm font-bold text-navy">Get a Quote</Link></div>
       </div>
+    </section>
 
-      {/* Services overview section */}
-      <div className="py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-[#b7800c]">Everything you need</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-[#03152d] sm:text-4xl">
-              Comprehensive Transport Solutions
-            </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              From residential moves to commercial logistics, we have the fleet and the expertise to deliver.
-            </p>
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-              {[
-                {
-                  name: 'Home & Office Moving',
-                  description: 'Stress-free relocations with professional packing, loading, and safe transport to your new destination.',
-                  icon: Truck,
-                },
-                {
-                  name: 'Furniture & Appliances',
-                  description: 'Safe collection and delivery of your valuable items, ensuring they arrive without a scratch.',
-                  icon: Package,
-                },
-                {
-                  name: 'Commercial & Building',
-                  description: 'Transport services for businesses, property jobs, and construction material deliveries.',
-                  icon: Clock,
-                },
-              ].map((feature) => (
-                <div key={feature.name} className="flex flex-col">
-                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-[#03152d]">
-                    <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-[#03152d]">
-                      <feature.icon className="h-6 w-6 text-[#b7800c]" aria-hidden="true" />
-                    </div>
-                    {feature.name}
-                  </dt>
-                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                    <p className="flex-auto">{feature.description}</p>
-                    <p className="mt-6">
-                      <Link href="/services" className="text-sm font-semibold leading-6 text-[#b7800c] hover:text-[#03152d]">
-                        Learn more <span aria-hidden="true">→</span>
-                      </Link>
-                    </p>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </div>
+    <section className="container-wide pb-20 md:pb-28"><div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between"><div><p className="font-display text-sm uppercase tracking-[.14em] text-gold">What we do</p><h2 className="display-tight mt-3 max-w-xl text-5xl text-navy md:text-7xl">Everything you need, <span className="text-gold">moved.</span></h2></div><p className="max-w-sm text-base leading-7 text-ink-muted">From residential moves to commercial logistics, we have the fleet and the expertise to deliver.</p></div><div className="mt-10 grid gap-5 md:grid-cols-3">{services.map((service, index) => <article key={service.title} className="group photo-card relative min-h-[330px] bg-navy"><img src={service.image} alt={service.title} className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105" /><div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" /><div className="relative flex min-h-[330px] flex-col justify-end p-6"><p className="font-display text-sm uppercase text-gold">0{index + 1} / Service</p><h3 className="font-display mt-2 text-3xl uppercase text-background">{service.title}</h3><p className="mt-2 max-w-sm text-sm leading-6 text-background/75">{service.description}</p></div></article>)}</div></section>
 
-      {/* Why Choose Us */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl sm:text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-[#03152d] sm:text-4xl">Why Choose Charloxy Transport?</h2>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              We pride ourselves on providing a premium, dependable service. Your peace of mind is our top priority.
-            </p>
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none shadow-sm bg-white">
-            <div className="p-8 sm:p-10 lg:flex-auto">
-              <h3 className="text-2xl font-bold tracking-tight text-[#03152d]">Fully Insured Operations</h3>
-              <p className="mt-6 text-base leading-7 text-gray-600">
-                We understand that your goods are valuable. That's why we carry comprehensive coverage for every trip we make.
-              </p>
-              <div className="mt-10 flex items-center gap-x-4">
-                <h4 className="flex-none text-sm font-semibold leading-6 text-[#b7800c]">What's included</h4>
-                <div className="h-px flex-auto bg-gray-100" />
-              </div>
-              <ul role="list" className="mt-8 grid grid-cols-1 gap-4 text-sm leading-6 text-gray-600 sm:grid-cols-2 sm:gap-6">
-                <li className="flex gap-x-3">
-                  <ShieldCheck className="h-6 w-5 flex-none text-[#b7800c]" aria-hidden="true" />
-                  Goods in Transit Insurance
-                </li>
-                <li className="flex gap-x-3">
-                  <ShieldCheck className="h-6 w-5 flex-none text-[#b7800c]" aria-hidden="true" />
-                  Coverage up to R150,000
-                </li>
-                <li className="flex gap-x-3">
-                  <ShieldCheck className="h-6 w-5 flex-none text-[#b7800c]" aria-hidden="true" />
-                  Professional Handling
-                </li>
-                <li className="flex gap-x-3">
-                  <ShieldCheck className="h-6 w-5 flex-none text-[#b7800c]" aria-hidden="true" />
-                  Real-time Updates
-                </li>
-              </ul>
-            </div>
-            <div className="p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-              <div className="rounded-2xl bg-gray-50 py-10 text-center ring-1 ring-inset ring-gray-900/5 lg:flex lg:flex-col lg:justify-center lg:py-16 h-full">
-                <div className="mx-auto max-w-xs px-8">
-                  <p className="text-base font-semibold text-gray-600">Ready to move?</p>
-                  <p className="mt-6 flex items-baseline justify-center gap-x-2">
-                    <span className="text-5xl font-bold tracking-tight text-[#03152d]">Fast</span>
-                    <span className="text-sm font-semibold leading-6 tracking-wide text-gray-600">Quotes</span>
-                  </p>
-                  <Link
-                    href="/quote"
-                    className="mt-10 block w-full rounded-md bg-[#b7800c] px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#9a6a09] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#b7800c]"
-                  >
-                    Get a Quote Now
-                  </Link>
-                  <p className="mt-6 text-xs leading-5 text-gray-600">
-                    No hidden fees. Professional service.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    <section className="bg-paper py-20 md:py-28"><div className="container-wide grid items-center gap-12 lg:grid-cols-2"><div><p className="font-display text-sm uppercase tracking-[.14em] text-gold">Why choose us</p><h2 className="display-tight mt-3 text-5xl text-navy md:text-7xl">Premium service.<br /><span className="text-gold">Peace of mind.</span></h2><p className="mt-6 max-w-lg text-base leading-7 text-ink-muted">We pride ourselves on providing a premium, dependable service. Your peace of mind is our top priority.</p><ul className="mt-8 grid gap-4 text-sm font-semibold text-navy sm:grid-cols-2">{['Goods in Transit Insurance', 'Coverage up to R150,000', 'Professional Handling', 'Real-time Updates'].map(item => <li key={item} className="flex items-center gap-3"><span className="grid size-7 place-items-center rounded-full bg-gold"><Check size={15} /></span>{item}</li>)}</ul></div><div className="photo-card relative h-[360px] bg-navy md:h-[480px]"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=85" alt="Professional movers carrying furniture" className="size-full object-cover" /><div className="absolute bottom-5 left-5 right-5 rounded-xl bg-gold p-5"><p className="font-display text-3xl uppercase text-navy">Ready to move?</p><Link href="/quote" className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Get a fast quote <ArrowRight size={16} /></Link></div></div></div></section>
+
+    <section className="container-wide py-20 md:py-28"><div className="mx-auto max-w-2xl"><p className="text-center font-display text-sm uppercase tracking-[.14em] text-gold">Frequently asked</p><h2 className="display-tight mt-3 text-center text-5xl text-navy md:text-6xl">NYC moving <span className="text-gold">questions</span></h2><div className="mt-10">{faqs.map((faq, index) => <div key={faq} className="flex items-center justify-between border-b border-navy/15 py-5 text-sm text-navy"><span><b className="mr-5 font-mono text-xs text-ink-muted">0{index + 1}</b>{faq}</span><span className="grid size-6 place-items-center rounded-full bg-gold"><Plus size={14} /></span></div>)}</div></div></section>
+
+    <section className="bg-gold py-5"><div className="container-wide flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display text-2xl uppercase text-navy md:justify-between md:text-4xl"><span>Get an estimate</span><ArrowRight className="hidden md:block" /><span>Get an estimate</span><ArrowRight className="hidden md:block" /><span>Get an estimate</span></div></section>
+  </div>;
 }
