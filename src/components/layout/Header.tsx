@@ -57,7 +57,48 @@ export default function Header() {
         </Link>
 
         <div className="hidden flex-1 items-center justify-center gap-8 lg:flex">
-          {navigation.map((item) => (
+          {navigation.map((item) => item.name === 'Services' ? (
+            <div key={item.href} className="relative flex items-center gap-1">
+              <Link
+                href={item.href}
+                className={`text-sm font-semibold transition-colors ${pathname === item.href ? 'text-gold' : 'text-navy hover:text-gold'}`}
+              >
+                {item.name}
+              </Link>
+              <button
+                type="button"
+                aria-expanded={desktopServicesOpen}
+                aria-controls="desktop-services-menu"
+                aria-label="Show all services"
+                onClick={() => setDesktopServicesOpen((value) => !value)}
+                className="rounded p-1 text-navy transition-colors hover:text-gold"
+              >
+                <ChevronDown className={`transition-transform ${desktopServicesOpen ? 'rotate-180' : ''}`} size={15} />
+              </button>
+              <AnimatePresence>
+                {desktopServicesOpen && (
+                  <motion.div
+                    id="desktop-services-menu"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    className="absolute left-1/2 top-full mt-4 w-72 -translate-x-1/2 overflow-hidden rounded-lg border border-navy/10 bg-background shadow-xl"
+                  >
+                    {services.map((service, index) => (
+                      <Link
+                        key={service.href}
+                        href={service.href}
+                        onClick={() => setDesktopServicesOpen(false)}
+                        className={`block px-4 py-3 text-sm font-medium text-navy transition-colors hover:bg-paper hover:text-gold ${index > 0 ? 'border-t border-navy/10' : ''}`}
+                      >
+                        {service.name}
+                      </Link>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ) : (
             <Link
               key={item.href}
               href={item.href}
@@ -69,40 +110,6 @@ export default function Header() {
         </div>
 
         <div className="hidden items-center justify-end gap-5 lg:flex">
-          <div className="relative">
-            <button
-              type="button"
-              aria-expanded={desktopServicesOpen}
-              aria-controls="desktop-services-menu"
-              aria-label="Show all services"
-              onClick={() => setDesktopServicesOpen((value) => !value)}
-              className="inline-flex items-center gap-1.5 border-l border-navy/15 pl-5 text-sm font-semibold text-navy transition-colors hover:text-gold"
-            >
-              All services <ChevronDown className={`transition-transform ${desktopServicesOpen ? 'rotate-180' : ''}`} size={16} />
-            </button>
-            <AnimatePresence>
-              {desktopServicesOpen && (
-                <motion.div
-                  id="desktop-services-menu"
-                  initial={{ opacity: 0, y: -6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -6 }}
-                  className="absolute right-0 top-full mt-4 w-72 overflow-hidden rounded-lg border border-navy/10 bg-background shadow-xl"
-                >
-                  {services.map((service, index) => (
-                    <Link
-                      key={service.href}
-                      href={service.href}
-                      onClick={() => setDesktopServicesOpen(false)}
-                      className={`block px-4 py-3 text-sm font-medium text-navy transition-colors hover:bg-paper hover:text-gold ${index > 0 ? 'border-t border-navy/10' : ''}`}
-                    >
-                      {service.name}
-                    </Link>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
           <a href={phoneHref} className="flex items-center gap-2 text-navy transition-colors hover:text-gold">
             <span className="flex items-center justify-center rounded-full border-2 border-current p-1.5"><Phone size={14} className="fill-current" /></span>
             <span className="whitespace-nowrap text-lg font-bold">{phoneNumber}</span>
