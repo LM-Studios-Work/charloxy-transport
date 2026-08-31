@@ -29,8 +29,13 @@ body { background: var(--background); color: var(--foreground); font-family: var
 
 @utility glass { background: color-mix(in srgb, var(--background) 92%, transparent); backdrop-filter: blur(14px); }
 @utility display-tight { font-family: var(--font-oswald), Impact, sans-serif; text-transform: uppercase; letter-spacing: -0.035em; line-height: .92; }
-@utility container-wide { width: min(100% - 2rem, 1200px); margin-inline: auto; }
-@utility photo-card { overflow: hidden; border-radius: 1rem; }
+@utility container-wide { width: min(100% - 2rem, 1400px); margin-inline: auto; }
+@utility photo-card { overflow: hidden; border-radius: 1.25rem; }
 
-@media (min-width: 768px) { .container-wide { width: min(100% - 4rem, 1200px); } }
-@media (min-width: 1024px) { .container-wide { width: min(100% - 6rem, 1200px); } }
+.estimate-input { width: 100%; border: 1px solid color-mix(in srgb, var(--navy) 12%, transparent); border-radius: .75rem; background: var(--background); padding: .85rem 1rem; color: var(--navy); font-size: .875rem; outline: none; transition: border-color .2s, box-shadow .2s; }
+.estimate-input::placeholder { color: color-mix(in srgb, var(--ink-muted) 72%, transparent); }
+.estimate-input:focus { border-color: var(--navy); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 35%, transparent); }
+.estimate-icon { pointer-events: none; position: absolute; right: 1rem; top: 50%; size: 1rem; transform: translateY(-50%); color: var(--ink-muted); }
+
+@media (min-width: 768px) { .container-wide { width: min(100% - 4rem, 1400px); } }
+@media (min-width: 1024px) { .container-wide { width: min(100% - 5rem, 1400px); } }
