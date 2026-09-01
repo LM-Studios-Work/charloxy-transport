@@ -164,13 +164,13 @@ export default function ServicesSlider() {
         ))}
       </div>
 
-      <div className="mt-8 flex items-center justify-center px-6 md:hidden" aria-label="Services carousel scroll position" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(scrollProgress * 100)}>
-        <div className="relative h-2 w-full max-w-[18rem] rounded-full border-t-[6px] border-dashed border-gold">
+      <div className="mt-8 flex items-center justify-center gap-2 px-6 md:hidden" aria-label="Services carousel scroll position" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(scrollProgress * 100)}>
+        {Array.from({ length: 4 }, (_, index) => (
           <span
-            className="absolute left-0 top-[-6px] h-1.5 w-10 rounded-full bg-gold transition-transform duration-200"
-            style={{ transform: `translateX(${scrollProgress * 248}px)` }}
+            key={index}
+            className={`h-1 w-7 rounded-full transition-colors duration-200 ${index <= Math.round(scrollProgress * 3) ? "bg-gold" : "bg-border"}`}
           />
-        </div>
+        ))}
       </div>
     </section>
   );
