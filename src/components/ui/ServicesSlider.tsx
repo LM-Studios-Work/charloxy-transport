@@ -53,12 +53,15 @@ export default function ServicesSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const updateButtons = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
     setCanPrev(el.scrollLeft > 4);
     setCanNext(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+    const maxScroll = el.scrollWidth - el.clientWidth;
+    setScrollProgress(maxScroll > 0 ? el.scrollLeft / maxScroll : 0);
   }, []);
 
   useEffect(() => {
@@ -159,6 +162,15 @@ export default function ServicesSlider() {
             </div>
           </article>
         ))}
+      </div>
+
+      <div className="mt-5 flex items-center justify-center md:hidden" aria-label="Services carousel scroll position" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(scrollProgress * 100)}>
+        <div className="relative h-1 w-28 border-t border-dashed border-gold/50">
+          <span
+            className="absolute left-0 top-[-3px] h-1.5 w-10 rounded-full bg-gold transition-transform duration-200"
+            style={{ transform: `translateX(${scrollProgress * 72}px)` }}
+          />
+        </div>
       </div>
     </section>
   );
