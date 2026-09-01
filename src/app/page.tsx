@@ -25,12 +25,17 @@ export default function Home() {
             <Link href="/services" className="inline-flex items-center rounded-full border border-background/60 px-6 py-3 font-semibold text-background">Our services</Link>
           </div>
         </div>
-        <div className="relative mx-5 mt-[-1rem] mb-0 lg:mr-8 lg:mt-10 lg:mb-10 lg:w-[480px] lg:self-start xl:w-[560px] lg:shrink-0">
+        <div className="relative mx-5 hidden lg:mr-8 lg:mt-10 lg:mb-10 lg:block lg:w-[480px] lg:self-start lg:shrink-0 xl:w-[560px]">
           <EstimateForm />
         </div>
       </div>
     </section>
 
+    <section className="container-wide -mt-2 pb-10 lg:hidden md:pb-24">
+      <div className="mx-auto max-w-2xl">
+        <EstimateForm />
+      </div>
+    </section>
 
     <ServicesSlider />
 
