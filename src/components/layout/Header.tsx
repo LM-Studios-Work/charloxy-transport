@@ -144,7 +144,7 @@ export default function Header() {
               aria-label="Mobile navigation"
             >
               <div className="flex items-center justify-between">
-                <Link href="/" onClick={closeMobile} className="font-display text-xl uppercase text-navy">Charloxy <span className="text-gold">Transport</span></Link>
+                <Link href="/" onClick={closeMobile} className="flex items-center gap-2 font-display text-xl uppercase text-navy"><img src="/logo-extracted.png" alt="Charloxy Transport logo" className="h-8 w-auto object-contain" />Charloxy <span className="text-gold">Transport</span></Link>
                 <button type="button" onClick={closeMobile} aria-label="Close main menu" className="rounded-full p-2 text-navy hover:bg-paper"><X /></button>
               </div>
 

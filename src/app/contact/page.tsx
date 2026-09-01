@@ -3,7 +3,7 @@ import EstimateForm from '@/components/quote/EstimateForm';
 
 const contactDetails = [
   { icon: Phone, label: 'Call or WhatsApp', value: '+27 82 429 6737', href: 'tel:+27824296737' },
-  { icon: Mail, label: 'Email us', value: process.env.EMAIL || 'lm.studios.web@gmail.com', href: `mailto:${process.env.EMAIL || 'lm.studios.web@gmail.com'}` },
+  { icon: Mail, label: 'Email us', value: process.env.EMAIL || 'info@charloxytransport.co.za', href: `mailto:${process.env.EMAIL || 'info@charloxytransport.co.za'}` },
   { icon: Clock3, label: 'Business hours', value: 'Mon–Fri 8:00 AM–5:00 PM · Sat 8:00 AM–1:00 PM' },
 ];
 

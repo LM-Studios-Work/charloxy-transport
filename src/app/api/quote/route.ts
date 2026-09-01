@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key');
-const TARGET_EMAIL = process.env.EMAIL || 'lm.studios.web@gmail.com';
+const TARGET_EMAIL = process.env.EMAIL || 'info@charloxytransport.co.za';
 
 export async function POST(request: Request) {
   try {
