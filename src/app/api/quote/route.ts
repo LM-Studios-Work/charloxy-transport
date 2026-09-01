@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key');
-const TARGET_EMAIL = 'lm.studios.web@gmail.com';
+const TARGET_EMAIL = process.env.EMAIL || 'lm.studios.web@gmail.com';
 
 export async function POST(request: Request) {
   try {
@@ -62,7 +62,7 @@ export async function POST(request: Request) {
 
     // Send real email via Resend
     const data = await resend.emails.send({
-      from: 'Charloxy Quotes <onboarding@resend.dev>', // Update this to verified domain when going to production
+      from: 'Charloxy Quotes <quotes@charloxytransport.co.za>',
       to: TARGET_EMAIL,
       subject: `New Quote Request from ${name}`,
       html: emailContent,

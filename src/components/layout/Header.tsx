@@ -50,7 +50,7 @@ export default function Header() {
       <header className="glass fixed inset-x-0 top-0 z-50 border-b border-navy/10">
       <nav className="container-wide flex h-[72px] items-center justify-between" aria-label="Global">
         <Link href="/" className="flex items-center gap-2" onClick={closeMobile}>
-          <span className="grid size-9 place-items-center rounded-full bg-gold font-display text-xl text-navy">C</span>
+          <img src="/logo-extracted.png" alt="Charloxy Transport Logo" className="h-9 w-auto object-contain" />
           <span className="font-display text-xl uppercase tracking-tight text-navy">
             Charloxy <span className="text-gold">Transport</span>
           </span>
