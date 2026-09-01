@@ -13,11 +13,11 @@ const reviews = [
 export default function Home() {
   return <div className="overflow-hidden bg-background">
     <section className="container-wide pt-5 pb-16 md:pt-7 md:pb-24">
-      <div className="relative min-h-[620px] overflow-hidden rounded-[1.75rem] bg-navy lg:min-h-[700px]">
-        <img src="https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=2200&q=85" alt="Charloxy Transport moving truck and team" className="absolute inset-0 size-full object-cover" />
+      <div className="relative min-h-[620px] overflow-hidden rounded-[1.75rem] bg-navy lg:min-h-[700px] flex flex-col lg:flex-row lg:justify-between">
+        <img src="/loading_onto_truck_hero.jpg" alt="Charloxy Transport loading onto truck" className="absolute inset-0 size-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/45 to-navy/10" />
         
-        <div className="relative flex min-h-[620px] flex-col justify-end gap-5 p-7 md:p-12 lg:min-h-[700px] lg:max-w-xl xl:max-w-2xl">
+        <div className="relative flex flex-col justify-end gap-5 p-7 md:p-12 lg:min-h-[700px] lg:max-w-xl xl:max-w-2xl lg:pb-12">
           <p className="font-display text-sm uppercase tracking-[.15em] text-gold">Reliable. Safe. On time.</p>
           <h1 className="display-tight max-w-2xl text-6xl text-background md:text-7xl lg:text-8xl">Johannesburg&apos;s <span className="text-gold">Trusted Movers.</span></h1>
           <p className="max-w-xl text-sm leading-6 text-background/80 lg:text-base lg:leading-7">Charloxy Transport delivers affordable, reliable furniture removals, home and office relocations, and general transport across Johannesburg and Gauteng. Carefully packed and moved. Guaranteed.</p>
@@ -27,7 +27,7 @@ export default function Home() {
           </div>
         </div>
         
-        <div className="relative mx-5 mb-5 lg:absolute lg:right-8 lg:top-2 lg:mb-0 lg:w-[480px] xl:w-[560px]">
+        <div className="relative mx-5 mb-5 lg:mr-8 lg:mt-10 lg:mb-10 lg:w-[480px] xl:w-[560px] lg:self-start lg:shrink-0">
           <EstimateForm />
         </div>
       </div>

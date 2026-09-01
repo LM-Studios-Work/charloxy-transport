@@ -1,24 +1,61 @@
 'use client';
 
-import { useState } from 'react';
-import { AlertCircle, CheckCircle2, Loader2, UploadCloud } from 'lucide-react';
+import { useRef, useState } from 'react';
+import { AlertCircle, CheckCircle2, Loader2, UploadCloud, X } from 'lucide-react';
 
 export default function EstimateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  
+  const [files, setFiles] = useState<File[]>([]);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = e.target.files;
+    if (selectedFiles && selectedFiles.length > 0) {
+      const filesArray = Array.from(selectedFiles);
+      setFiles((prev) => {
+        const combined = [...prev, ...filesArray];
+        if (combined.length > 6) {
+          alert('You can only upload a maximum of 6 photos.');
+          return combined.slice(0, 6);
+        }
+        return combined;
+      });
+    }
+    
+    // Clear the input value so the exact same file can be selected again if needed
+    // Deferring this slightly ensures the files are fully processed first
+    setTimeout(() => {
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
+    }, 0);
+  };
+
+  const removeFile = (indexToRemove: number) => {
+    setFiles((prev) => prev.filter((_, index) => index !== indexToRemove));
+  };
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSubmitting(true);
     setStatus('idle');
     const form = event.currentTarget;
+    const formData = new FormData(form);
+    
+    // Override the images with our state since we can't easily mutate the input's FileList
+    formData.delete('images');
+    files.forEach((file) => formData.append('images', file));
+
     try {
-      const response = await fetch('/api/quote', { method: 'POST', body: new FormData(form) });
+      const response = await fetch('/api/quote', { method: 'POST', body: formData });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || 'Failed to submit quote request');
       setStatus('success');
       form.reset();
+      setFiles([]);
     } catch (error) {
       setStatus('error');
       setErrorMessage(error instanceof Error ? error.message : 'Please try again.');
@@ -76,14 +113,45 @@ export default function EstimateForm() {
         <textarea id="hero-description" name="description" rows={3} placeholder="Write your comment" className="estimate-input resize-none md:col-span-2" />
 
         <div className="md:col-span-2">
-          <label htmlFor="hero-images" className="sr-only">Upload photos (optional)</label>
-          <label htmlFor="hero-images" className="group flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-[color-mix(in_srgb,var(--navy)_20%,transparent)] rounded-xl cursor-pointer bg-paper hover:bg-white transition-colors">
+          <div className="sr-only">Upload photos (optional)</div>
+          <label className={`group flex flex-col items-center justify-center w-full h-24 border-2 border-dashed border-[color-mix(in_srgb,var(--navy)_20%,transparent)] rounded-xl transition-colors ${files.length >= 6 ? 'bg-gray-100 opacity-50 cursor-not-allowed' : 'cursor-pointer bg-paper hover:bg-white'}`}>
             <div className="flex flex-col items-center justify-center mt-2">
               <UploadCloud className="w-5 h-5 mb-1 text-ink-muted group-hover:text-gold transition-colors" />
-              <p className="text-sm text-ink-muted"><span className="font-semibold text-navy">Click to upload photos</span></p>
+              <p className="text-sm text-ink-muted">
+                <span className="font-semibold text-navy">
+                  {files.length >= 6 ? 'Maximum photos reached' : 'Click to upload photos'}
+                </span> (Max 6)
+              </p>
             </div>
-            <input id="hero-images" name="images" type="file" multiple accept="image/*" className="hidden" />
+            <input 
+              name="images_temp" 
+              type="file" 
+              multiple 
+              accept="image/*" 
+              className="hidden" 
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              disabled={files.length >= 6}
+            />
           </label>
+
+          {files.length > 0 && (
+            <div className="mt-3 flex flex-wrap gap-2">
+              {files.map((file, index) => (
+                <div key={`${file.name}-${index}`} className="flex items-center gap-2 rounded-lg border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-white px-3 py-1.5 text-xs text-navy shadow-sm">
+                  <span className="max-w-[150px] truncate">{file.name}</span>
+                  <button 
+                    type="button" 
+                    onClick={() => removeFile(index)} 
+                    className="text-ink-muted hover:text-red-500 transition-colors"
+                    aria-label={`Remove ${file.name}`}
+                  >
+                    <X className="size-3.5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
