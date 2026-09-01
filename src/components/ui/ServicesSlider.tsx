@@ -168,7 +168,7 @@ export default function ServicesSlider() {
         {Array.from({ length: 4 }, (_, index) => (
           <span
             key={index}
-            className={`h-1 w-7 rounded-full transition-colors duration-200 ${index <= Math.round(scrollProgress * 3) ? "bg-gold" : "bg-border"}`}
+            className={`h-1 w-7 rounded-full transition-colors duration-200 ${index === Math.round(scrollProgress * 3) ? "bg-gold" : "bg-border/60"}`}
           />
         ))}
       </div>
