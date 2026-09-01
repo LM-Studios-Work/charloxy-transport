@@ -94,9 +94,9 @@ export default function EstimateForm() {
           <input required id="hero-email" name="email" type="email" placeholder="Email address*" className="estimate-input" />
         </div>
         
-        <div>
+        <div className="min-w-0">
           <label htmlFor="hero-date" className="sr-only">Preferred move date</label>
-          <input required id="hero-date" name="date" type="date" className="estimate-input" />
+          <input required id="hero-date" name="date" type="date" className="estimate-input min-w-0 max-w-full appearance-none" />
         </div>
         
         <div className="md:col-span-2">
