@@ -5,14 +5,14 @@ import RelatedServices from '@/components/ui/RelatedServices';
 const included = [
   'Store-to-door collection and delivery',
   'Heavy lifting and loading included',
-  'Protective blankets and strapping for safe transit',
+  'Secure strapping (protective blankets available as add-ons)',
   'Flexible scheduling including weekends',
   'Direct communication with the driver'
 ];
 
 const steps = [
   { icon: PackageOpen, title: 'Retail or Private', copy: 'Whether you bought a new couch from a store or a fridge off a private seller, we handle the pickup.' },
-  { icon: ShieldCheck, title: 'Secure Handling', copy: 'Appliances and furniture are strapped and blanket-wrapped to prevent scratches or dents in transit.' },
+  { icon: ShieldCheck, title: 'Secure Handling', copy: 'Appliances and furniture are strapped for secure transport. Optional blanket-wrapping available.' },
   { icon: Truck, title: 'Prompt Delivery', copy: 'We transport your items directly to your home or office and place them exactly where you need them.' },
 ];
 
@@ -67,7 +67,7 @@ export default function FurnitureAppliancePage() {
           </div>
           <div>
             <p className="text-lg leading-8 text-ink-muted">Moving heavy appliances or large furniture pieces requires physical capability and the correct protective equipment. We manage collections from retail stores or private sellers, providing the fleet vehicles and personnel needed to handle the transition safely.</p>
-            <p className="mt-5 text-lg leading-8 text-ink-muted">Our teams arrive prepared with protective blankets and strapping to secure your items during transit. We manage the heavy lifting at the collection point and ensure the item is placed exactly where you need it upon delivery, preventing damage to both the item and your property.</p>
+            <p className="mt-5 text-lg leading-8 text-ink-muted">Our teams arrive prepared with secure strapping to keep your items safe during transit, and offer specialized moving blankets as optional extras. We manage the heavy lifting at the collection point and ensure the item is placed exactly where you need it upon delivery, preventing damage to both the item and your property.</p>
           </div>
         </div>
       </section>

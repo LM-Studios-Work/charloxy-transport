@@ -3,8 +3,8 @@ import { ArrowLeft, ArrowRight, Check, MapPin, ShieldCheck, Truck } from 'lucide
 import RelatedServices from '@/components/ui/RelatedServices';
 
 const included = [
-  'Furniture wrapping and protection',
-  'Packing materials and full packing support',
+  'Furniture wrapping and protection (optional)',
+  'Packing materials and full packing support (optional)',
   'Loading and unloading for large items',
   'Fleet vehicles sized for the job',
   'Clear communication from start to finish'
@@ -12,7 +12,7 @@ const included = [
 
 const steps = [
   { icon: MapPin, title: 'Logistical Planning', copy: 'We account for heavy traffic routes, estate access protocols, lift bookings, and building regulations before moving day.' },
-  { icon: ShieldCheck, title: 'Secure Loading', copy: 'Our teams bring the right materials and experience to protect furniture, appliances, office equipment, and every fragile detail.' },
+  { icon: ShieldCheck, title: 'Secure Loading', copy: 'Our teams have the experience to safely load your items. Optional protective materials and wrapping services are available.' },
   { icon: Truck, title: 'Direct Execution', copy: 'From household relocations to corporate offices, we keep the move punctual, secure, and clearly communicated.' },
 ];
 
@@ -67,7 +67,7 @@ export default function HomeOfficeMovingPage() {
           </div>
           <div>
             <p className="text-lg leading-8 text-ink-muted">We provide structured residential and commercial moving services throughout the greater Johannesburg area, covering suburbs like Sandton, Randburg, Midrand, and Bedfordview.</p>
-            <p className="mt-5 text-lg leading-8 text-ink-muted">Whether relocating a corporate office or moving your household, our teams manage the physical requirements of the transition. We supply the necessary fleet vehicles, moving materials, and personnel for large furniture removals, equipment transport, and full-scale packing. Our focus is entirely on punctuality, secure loading, and clear communication from start to finish.</p>
+            <p className="mt-5 text-lg leading-8 text-ink-muted">Whether relocating a corporate office or moving your household, our teams manage the physical requirements of the transition. We supply the necessary fleet vehicles and personnel for large furniture removals and equipment transport. Specialized moving materials and full-scale packing services are available as optional add-ons. Our focus is entirely on punctuality, secure loading, and clear communication from start to finish.</p>
           </div>
         </div>
       </section>

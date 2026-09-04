@@ -16,6 +16,7 @@ export async function POST(request: Request) {
     const delivery = formData.get('delivery') as string;
     const date = formData.get('date') as string;
     const description = formData.get('description') as string;
+    const extras = formData.getAll('extras') as string[];
 
     // Validate required fields
     if (!name || !email || !phone || !pickup || !delivery || !date || !description) {
@@ -50,6 +51,13 @@ export async function POST(request: Request) {
       <p><strong>Date:</strong> ${date}</p>
       <p><strong>Description:</strong></p>
       <p>${description.replace(/\n/g, '<br>')}</p>
+      
+      ${extras.length > 0 ? `
+      <h2>Requested Optional Extras</h2>
+      <ul>
+        ${extras.map(extra => `<li>${extra}</li>`).join('')}
+      </ul>
+      ` : ''}
     `;
 
     // If API key is missing, mock success

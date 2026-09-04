@@ -13,6 +13,7 @@ const services = [
   { name: 'Building Material Transport', href: '/services/building-material-transport' },
   { name: 'General Goods Transport', href: '/services/general-goods-transport' },
   { name: 'Transport Services for Businesses', href: '/services/business-transport' },
+  { name: 'Packing & Moving Extras', href: '/moving-extras' },
 ];
 
 const navigation = [

@@ -1,12 +1,14 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { AlertCircle, CheckCircle2, Loader2, UploadCloud, X } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Loader2, UploadCloud, X } from 'lucide-react';
+import { movingExtras } from '@/data/movingExtras';
 
 export default function EstimateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [showExtras, setShowExtras] = useState(false);
   
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -96,7 +98,18 @@ export default function EstimateForm() {
         
         <div className="min-w-0">
           <label htmlFor="hero-date" className="sr-only">Preferred move date</label>
-          <input required id="hero-date" name="date" type="date" className="estimate-input min-w-0 max-w-full appearance-none" />
+          <input 
+            required 
+            id="hero-date" 
+            name="date" 
+            type="text" 
+            placeholder="Preferred move date*"
+            onFocus={(e) => (e.target.type = 'date')}
+            onBlur={(e) => {
+              if (!e.target.value) e.target.type = 'text';
+            }}
+            className="estimate-input min-w-0 max-w-full appearance-none" 
+          />
         </div>
         
         <div className="md:col-span-2">
@@ -111,6 +124,36 @@ export default function EstimateForm() {
         
         <label htmlFor="hero-description" className="sr-only">Write your comment</label>
         <textarea id="hero-description" name="description" rows={3} placeholder="Write your comment" className="estimate-input resize-none md:col-span-2" />
+
+        <div className="md:col-span-2 relative">
+          <button 
+            type="button" 
+            onClick={() => setShowExtras(!showExtras)} 
+            className="flex w-full items-center justify-between rounded-xl border border-[color-mix(in_srgb,var(--navy)_20%,transparent)] bg-paper px-4 py-3 text-sm font-semibold text-navy transition-colors hover:bg-white"
+          >
+            <span>Add Optional Packing & Moving Extras</span>
+            {showExtras ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+          </button>
+          
+          {showExtras && (
+            <div className="absolute top-full left-0 right-0 z-50 mt-2 max-h-64 overflow-y-auto grid grid-cols-1 gap-3 rounded-xl border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-paper p-4 shadow-xl sm:grid-cols-2">
+              {movingExtras.map((extra) => (
+                <label key={extra.id} className="group flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white">
+                  <input 
+                    type="checkbox" 
+                    name="extras" 
+                    value={extra.name} 
+                    className="mt-1 size-4 shrink-0 rounded border-[color-mix(in_srgb,var(--navy)_30%,transparent)] text-navy focus:ring-navy" 
+                  />
+                  <div>
+                    <p className="text-sm font-semibold text-navy">{extra.name}</p>
+                    <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">{extra.description}</p>
+                  </div>
+                </label>
+              ))}
+            </div>
+          )}
+        </div>
 
         <div className="md:col-span-2">
           <div className="sr-only">Upload photos (optional)</div>

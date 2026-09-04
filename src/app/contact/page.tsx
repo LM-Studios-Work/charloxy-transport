@@ -31,7 +31,7 @@ export default function Contact() {
             <div className="flex flex-col gap-5 border-t border-background/15 pt-6">
               {contactDetails.map(({ icon: Icon, label, value, href }) => (
                 <div key={label} className="flex gap-4">
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gold text-navy"><Icon className="size-4" aria-hidden="true" /></span>
+                  <Icon className="mt-0.5 size-5 shrink-0 text-gold" aria-hidden="true" />
                   <div className="flex flex-col gap-1 text-sm">
                     <span className="font-semibold text-background">{label}</span>
                     {href ? <a className="text-background/70 transition-colors hover:text-gold" href={href}>{value}</a> : <span className="leading-6 text-background/70">{value}</span>}
