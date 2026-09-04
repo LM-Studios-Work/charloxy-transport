@@ -35,6 +35,12 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .estimate-input { width: 100%; border: 1px solid color-mix(in srgb, var(--navy) 12%, transparent); border-radius: .75rem; background: var(--background); padding: .85rem 1rem; color: var(--navy); font-size: .875rem; outline: none; transition: border-color .2s, box-shadow .2s; }
 .estimate-input::placeholder { color: color-mix(in srgb, var(--ink-muted) 72%, transparent); }
 .estimate-input:focus { border-color: var(--navy); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 35%, transparent); }
+
+.estimate-input[type="date"]:invalid::-webkit-datetime-edit { color: transparent; }
+.estimate-input[type="date"]:invalid::before { content: attr(placeholder); position: absolute; color: color-mix(in srgb, var(--ink-muted) 72%, transparent); pointer-events: none; }
+.estimate-input[type="date"]:focus::-webkit-datetime-edit { color: inherit !important; }
+.estimate-input[type="date"]:focus::before { display: none !important; }
+
 .date-input { min-width: 0; max-width: 100%; }
 .date-input::-webkit-calendar-picker-indicator { margin-left: .25rem; }
 

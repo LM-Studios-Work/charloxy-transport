@@ -96,18 +96,14 @@ export default function EstimateForm() {
           <input required id="hero-email" name="email" type="email" placeholder="Email address*" className="estimate-input" />
         </div>
         
-        <div className="min-w-0">
+        <div className="min-w-0 relative">
           <label htmlFor="hero-date" className="sr-only">Preferred move date</label>
           <input 
             required 
             id="hero-date" 
             name="date" 
-            type="text" 
+            type="date" 
             placeholder="Preferred move date*"
-            onFocus={(e) => (e.target.type = 'date')}
-            onBlur={(e) => {
-              if (!e.target.value) e.target.type = 'text';
-            }}
             className="estimate-input min-w-0 max-w-full appearance-none" 
           />
         </div>

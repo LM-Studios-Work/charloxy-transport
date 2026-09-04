@@ -6,7 +6,7 @@ import {
   Phone,
 } from "lucide-react";
 
-const email = process.env.EMAIL || "info@charloxytransport.co.za";
+const email = "info@charloxytransport.co.za";
 
 const navigation = [
   { label: "About us", href: "/about" },

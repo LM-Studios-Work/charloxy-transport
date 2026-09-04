@@ -21,16 +21,16 @@ export default function Home() {
       <div className="relative min-h-[540px] overflow-hidden rounded-[1.75rem] bg-navy lg:min-h-[700px] lg:flex lg:flex-row lg:justify-between">
         <img src="/loading_onto_truck_hero.jpg" alt="Charloxy Transport loading onto truck" className="absolute inset-0 size-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/45 to-navy/10" />
-        <div className="relative flex min-h-[540px] flex-col justify-end gap-5 p-7 md:min-h-0 md:p-12 lg:min-h-[700px] lg:max-w-xl lg:pb-12 xl:max-w-2xl">
+        <div className="relative flex min-h-[540px] flex-col justify-end gap-5 p-7 md:min-h-0 md:p-12 lg:min-h-[700px] lg:justify-center lg:max-w-xl xl:max-w-2xl">
           <p className="font-display text-sm uppercase tracking-[.15em] text-gold">Reliable. Safe. On time.</p>
-          <h1 className="display-tight max-w-2xl break-words text-5xl text-background sm:text-6xl md:text-7xl lg:text-8xl">Johannesburg&apos;s <span className="text-gold">Trusted Movers.</span></h1>
+          <h1 className="display-tight max-w-2xl text-4xl text-background sm:text-6xl md:text-7xl lg:text-8xl"><span className="whitespace-nowrap">Johannesburg&apos;s</span> <span className="text-gold">Trusted Movers.</span></h1>
           <p className="max-w-xl text-sm leading-6 text-background/80 lg:text-base lg:leading-7">Charloxy Transport delivers affordable, reliable furniture removals, home and office relocations, and general transport across Johannesburg and Gauteng. Handled with care from collection to delivery.</p>
           <div className="flex flex-wrap gap-3">
             <Link href="/quote" className="inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-semibold text-navy">Request a quote <ArrowRight size={18} /></Link>
             <Link href="/services" className="inline-flex items-center rounded-full border border-background/60 px-6 py-3 font-semibold text-background">Our services</Link>
           </div>
         </div>
-        <div className="relative mx-5 hidden lg:mr-8 lg:mt-10 lg:mb-10 lg:block lg:w-[480px] lg:self-start lg:shrink-0 xl:w-[560px]">
+        <div className="relative mx-5 hidden lg:mr-8 lg:mt-10 lg:mb-10 lg:block lg:w-[480px] lg:self-center lg:shrink-0 xl:w-[560px]">
           <EstimateForm />
         </div>
       </div>
