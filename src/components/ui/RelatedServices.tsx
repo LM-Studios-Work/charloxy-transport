@@ -14,15 +14,14 @@ export default function RelatedServices() {
     <section className="container-wide pb-20 md:pb-28">
       <div className="flex flex-col gap-4 border-b border-navy/15 pb-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-display text-sm uppercase tracking-[.14em] text-gold">Keep moving</p>
+
           <h2 className="display-tight mt-2 text-5xl text-navy md:text-6xl">More ways we can <span className="text-gold">help.</span></h2>
         </div>
         <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-navy underline-offset-4 hover:underline">View all services <ArrowUpRight size={16} /></Link>
       </div>
       <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
         {serviceLinks.map((service, index) => (
-          <Link key={service.slug} href={`/services/${service.slug}`} className="group flex min-h-48 flex-col justify-between border border-navy/15 bg-paper p-5 transition-colors hover:bg-gold">
-            <span className="font-mono text-xs text-ink-muted">0{index + 2} / Service</span>
+          <Link key={service.slug} href={`/services/${service.slug}`} className="group flex min-h-48 flex-col justify-end border border-navy/15 bg-paper p-5 transition-colors hover:bg-gold">
             <div><h3 className="font-display text-2xl uppercase leading-none text-navy">{service.title}</h3><p className="mt-3 text-sm leading-6 text-ink-muted group-hover:text-navy/70">{service.copy}</p><ArrowUpRight className="mt-5 text-navy" size={18} /></div>
           </Link>
         ))}

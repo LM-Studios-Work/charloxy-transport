@@ -9,42 +9,42 @@ const services = [
     index: 1,
     title: 'Home & Office Moving',
     description: 'Whether you are moving within Johannesburg or relocating your office, our experienced moving teams ensure that every item is handled with care from collection to delivery.',
-    image: '/moving_truck.jpg',
+    image: 'https://images.unsplash.com/photo-1600518464441-9154a4dea21b?auto=format&fit=crop&w=1200&q=85',
     slug: 'home-office-moving',
   },
   {
     index: 2,
     title: 'Furniture & Appliance Deliveries',
     description: 'Bought new furniture or moving a fridge? We specialise in transporting bulky single items quickly and safely. Ideal for clients who only need a few items transported.',
-    image: '/packing_furniture.jpg',
+    image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=85',
     slug: 'furniture-appliance-deliveries',
   },
   {
     index: 3,
     title: 'Collections & Deliveries',
     description: 'Time-sensitive collection and delivery services for parcels and important goods. We plan every route to ensure safe and timely delivery.',
-    image: '/handing_over_package.jpg',
+    image: 'https://images.unsplash.com/photo-1586528116493-da8b90c7dc38?auto=format&fit=crop&w=1200&q=85',
     slug: 'collections-deliveries',
   },
   {
     index: 4,
     title: 'Building Material Transport',
     description: 'Reliable transport for construction materials. We help Johannesburg contractors and DIY enthusiasts get their supplies to the site efficiently.',
-    image: '/construction_material.jpg',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=85',
     slug: 'building-material-transport',
   },
   {
     index: 5,
     title: 'General Goods Transport',
     description: 'Flexible transport solutions. If it fits in our vehicles, we can move it securely, keeping every item safe along the way.',
-    image: '/packed_boxes.jpg',
+    image: 'https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1200&q=85',
     slug: 'general-goods-transport',
   },
   {
     index: 6,
     title: 'Transport Services for Businesses',
     description: 'Business relocations and regular transport contracts require careful planning. We work with companies across Gauteng to ensure organized, efficient logistics.',
-    image: '/loading_onto_van.jpg',
+    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=85',
     slug: 'business-transport',
   },
 ];
@@ -53,29 +53,33 @@ export default function ServicesSlider() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
   const [canNext, setCanNext] = useState(true);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const updateButtons = useCallback(() => {
+  const updateState = useCallback(() => {
     const el = trackRef.current;
     if (!el) return;
     setCanPrev(el.scrollLeft > 4);
     setCanNext(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
-    const maxScroll = el.scrollWidth - el.clientWidth;
-    setScrollProgress(maxScroll > 0 ? el.scrollLeft / maxScroll : 0);
+    
+    // Calculate active index
+    const childWidth = (el.children[0] as HTMLElement)?.offsetWidth || 360;
+    const gap = 20; // gap-5 is 1.25rem = 20px
+    const index = Math.round(el.scrollLeft / (childWidth + gap));
+    setActiveIndex(Math.min(Math.max(index, 0), services.length - 1));
   }, []);
 
   useEffect(() => {
     const el = trackRef.current;
     if (!el) return;
-    updateButtons();
-    el.addEventListener('scroll', updateButtons, { passive: true });
-    const ro = new ResizeObserver(updateButtons);
+    updateState();
+    el.addEventListener('scroll', updateState, { passive: true });
+    const ro = new ResizeObserver(updateState);
     ro.observe(el);
     return () => {
-      el.removeEventListener('scroll', updateButtons);
+      el.removeEventListener('scroll', updateState);
       ro.disconnect();
     };
-  }, [updateButtons]);
+  }, [updateState]);
 
   const scroll = (dir: 'prev' | 'next') => {
     const el = trackRef.current;
@@ -84,21 +88,25 @@ export default function ServicesSlider() {
     const amount = 380;
     el.scrollBy({ left: dir === 'next' ? amount : -amount, behavior: 'smooth' });
   };
+  
+  const scrollToSlide = (index: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const childWidth = (el.children[0] as HTMLElement)?.offsetWidth || 360;
+    const gap = 20;
+    el.scrollTo({ left: index * (childWidth + gap), behavior: 'smooth' });
+  };
 
   return (
     <section className="container-wide pb-20 md:pb-28">
       {/* Header */}
       <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="font-display text-sm uppercase tracking-[.14em] text-gold">What we do</p>
+
           <h2 className="display-tight mt-3 max-w-2xl text-5xl text-navy md:text-7xl">
             Everything you need, <span className="text-gold">moved.</span>
           </h2>
         </div>
-        <p className="max-w-sm text-base leading-7 text-ink-muted">
-          From a trusted local mover in Johannesburg to a preferred logistics partner. We provide
-          professional residential and commercial moving services.
-        </p>
       </div>
 
       {/* Controls row */}
@@ -156,19 +164,24 @@ export default function ServicesSlider() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/20 to-transparent" />
             <div className="relative flex min-h-[360px] flex-col justify-end p-6">
-              <p className="font-display text-sm uppercase text-gold">0{service.index} / Service</p>
               <h3 className="font-display mt-2 text-3xl uppercase text-background">{service.title}</h3>
               <p className="mt-2 text-sm leading-6 text-background/75">{service.description}</p>
             </div>
           </article>
         ))}
       </div>
-
-      <div className="mt-8 flex items-center justify-center gap-2 px-6 md:hidden" aria-label="Services carousel scroll position" role="progressbar" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(scrollProgress * 100)}>
-        {Array.from({ length: 4 }, (_, index) => (
-          <span
-            key={index}
-            className={`h-1 w-7 rounded-full transition-colors duration-200 ${index === Math.round(scrollProgress * 3) ? "bg-gold" : "bg-border/60"}`}
+      
+      {/* Dash indicators */}
+      <div className="mt-6 flex items-center justify-center gap-2 md:hidden">
+        {services.map((_, i) => (
+          <button
+            key={i}
+            type="button"
+            aria-label={`Go to slide ${i + 1}`}
+            onClick={() => scrollToSlide(i)}
+            className={`h-1.5 w-6 md:w-8 rounded-full transition-colors ${
+              activeIndex === i ? 'bg-gold' : 'bg-navy/15 hover:bg-navy/30'
+            }`}
           />
         ))}
       </div>

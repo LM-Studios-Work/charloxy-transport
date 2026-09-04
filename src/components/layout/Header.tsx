@@ -31,13 +31,24 @@ export default function Header() {
   const [desktopServicesOpen, setDesktopServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
+  const isActive = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(href));
+
   useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
     if (!open) return;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false);
     };
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [open]);
 
   const closeMobile = () => {
@@ -61,7 +72,7 @@ export default function Header() {
             <div key={item.href} className="relative flex items-center gap-1">
               <Link
                 href={item.href}
-                className={`text-sm font-semibold transition-colors ${pathname === item.href ? 'text-gold' : 'text-navy hover:text-gold'}`}
+                className={`text-sm font-semibold transition-colors ${isActive(item.href) ? 'text-gold' : 'text-navy hover:text-gold'}`}
               >
                 {item.name}
               </Link>
@@ -89,7 +100,7 @@ export default function Header() {
                         key={service.href}
                         href={service.href}
                         onClick={() => setDesktopServicesOpen(false)}
-                        className={`block px-4 py-3 text-sm font-medium text-navy transition-colors hover:bg-paper hover:text-gold ${index > 0 ? 'border-t border-navy/10' : ''}`}
+                        className={`block px-4 py-3 text-sm font-medium transition-colors hover:bg-paper hover:text-gold ${index > 0 ? 'border-t border-navy/10' : ''} ${pathname === service.href ? 'text-gold' : 'text-navy'}`}
                       >
                         {service.name}
                       </Link>
@@ -140,7 +151,7 @@ export default function Header() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', ease: [0.22, 1, 0.36, 1], duration: 0.35 }}
-              className="fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,390px)] flex-col bg-background p-6 shadow-2xl lg:hidden"
+              className="fixed inset-y-0 right-0 z-[70] flex w-[min(88vw,390px)] flex-col overflow-y-auto bg-background p-6 shadow-2xl lg:hidden"
               aria-label="Mobile navigation"
             >
               <div className="flex items-center justify-between">
@@ -152,16 +163,16 @@ export default function Header() {
                 {navigation.map((item) => item.name === 'Services' ? (
                   <div key={item.href} className="border-t border-navy/15">
                     <div className="flex items-center justify-between">
-                      <Link href={item.href} onClick={closeMobile} className="py-5 font-display text-3xl uppercase text-navy">{item.name}</Link>
+                      <Link href={item.href} onClick={closeMobile} className={`py-5 font-display text-3xl uppercase ${isActive(item.href) ? 'text-gold' : 'text-navy'}`}>{item.name}</Link>
                       <button type="button" aria-label="Expand services" aria-expanded={mobileServicesOpen} onClick={() => setMobileServicesOpen((value) => !value)} className="p-3 text-navy"><ChevronDown className={`transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} /></button>
                     </div>
                     <AnimatePresence>
                       {mobileServicesOpen && <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden border-t border-navy/10">
-                        {services.map((service) => <Link key={service.href} href={service.href} onClick={closeMobile} className="block border-b border-navy/10 py-3 pl-3 text-sm font-semibold text-ink-muted hover:text-gold">{service.name}</Link>)}
+                        {services.map((service) => <Link key={service.href} href={service.href} onClick={closeMobile} className={`block border-b border-navy/10 py-3 pl-3 text-sm font-semibold hover:text-gold ${pathname === service.href ? 'text-gold' : 'text-ink-muted'}`}>{service.name}</Link>)}
                       </motion.div>}
                     </AnimatePresence>
                   </div>
-                ) : <Link key={item.href} href={item.href} onClick={closeMobile} className="border-t border-navy/15 py-5 font-display text-3xl uppercase text-navy">{item.name}</Link>)}
+                ) : <Link key={item.href} href={item.href} onClick={closeMobile} className={`border-t border-navy/15 py-5 font-display text-3xl uppercase ${isActive(item.href) ? 'text-gold' : 'text-navy'}`}>{item.name}</Link>)}
               </div>
 
               <div className="mt-auto flex flex-col gap-4 border-t border-navy/15 pt-6">
