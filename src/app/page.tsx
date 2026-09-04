@@ -19,7 +19,7 @@ export default function Home() {
         <div className="relative flex min-h-[540px] flex-col justify-end gap-5 p-7 md:min-h-0 md:p-12 lg:min-h-[700px] lg:max-w-xl lg:pb-12 xl:max-w-2xl">
           <p className="font-display text-sm uppercase tracking-[.15em] text-gold">Reliable. Safe. On time.</p>
           <h1 className="display-tight max-w-2xl break-words text-5xl text-background sm:text-6xl md:text-7xl lg:text-8xl">Johannesburg&apos;s <span className="text-gold">Trusted Movers.</span></h1>
-          <p className="max-w-xl text-sm leading-6 text-background/80 lg:text-base lg:leading-7">Charloxy Transport delivers affordable, reliable furniture removals, home and office relocations, and general transport across Johannesburg and Gauteng. Carefully packed and moved. Guaranteed.</p>
+          <p className="max-w-xl text-sm leading-6 text-background/80 lg:text-base lg:leading-7">Charloxy Transport delivers affordable, reliable furniture removals, home and office relocations, and general transport across Johannesburg and Gauteng. Handled with care from collection to delivery.</p>
           <div className="flex flex-wrap gap-3">
             <Link href="/quote" className="inline-flex items-center gap-3 rounded-full bg-gold px-6 py-3 font-semibold text-navy">Request a quote <ArrowRight size={18} /></Link>
             <Link href="/services" className="inline-flex items-center rounded-full border border-background/60 px-6 py-3 font-semibold text-background">Our services</Link>
