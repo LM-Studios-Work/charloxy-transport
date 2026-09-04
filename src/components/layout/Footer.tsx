@@ -43,9 +43,6 @@ export default function Footer() {
 
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_1.35fr] lg:gap-12 lg:py-16">
           <div>
-            <div className="flex items-center gap-3">
-              <img src="/logo-extracted.png" alt="Charloxy Transport" className="h-12 w-auto object-contain" />
-            </div>
             <p className="mt-6 max-w-xs text-sm leading-6 text-background/60">
               Reliable. Safe. On Time. A transport partner you can count on from collection to delivery.
             </p>
