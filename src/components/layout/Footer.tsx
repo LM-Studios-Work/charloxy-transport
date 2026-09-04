@@ -15,6 +15,15 @@ const navigation = [
   { label: "Request a quote", href: "/quote" },
 ];
 
+const services = [
+  { label: "Home & office moving", href: "/services/home-office-moving" },
+  { label: "Business transport", href: "/services/business-transport" },
+  { label: "Building materials", href: "/services/building-material-transport" },
+  { label: "Collections & deliveries", href: "/services/collections-deliveries" },
+  { label: "Furniture & appliances", href: "/services/furniture-appliance-deliveries" },
+  { label: "General goods transport", href: "/services/general-goods-transport" },
+];
+
 export default function Footer() {
   return (
     <footer className="bg-navy text-background" aria-labelledby="footer-heading">
@@ -41,7 +50,7 @@ export default function Footer() {
           </Link>
         </div>
 
-        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.8fr_1.35fr] lg:gap-12 lg:py-16">
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1fr_0.9fr_1.15fr_1.35fr] lg:gap-12 lg:py-16">
           <div>
             <p className="mt-6 max-w-xs text-sm leading-6 text-background/60">
               Reliable. Safe. On Time. A transport partner you can count on from collection to delivery.
@@ -52,6 +61,17 @@ export default function Footer() {
             <p className="font-display text-sm uppercase tracking-[0.16em] text-gold">Explore</p>
             <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/65">
               {navigation.map((item) => (
+                <Link key={item.href} href={item.href} className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+
+          <nav aria-label="Footer services">
+            <p className="font-display text-sm uppercase tracking-[0.16em] text-gold">Services</p>
+            <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/65">
+              {services.map((item) => (
                 <Link key={item.href} href={item.href} className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
                   {item.label}
                 </Link>
