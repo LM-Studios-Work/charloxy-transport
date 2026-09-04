@@ -15,8 +15,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${oswald.variable} h-full antialiased scroll-smooth bg-background`}>
-      <body className="min-h-full flex flex-col font-sans">
+    <html lang="en" className={`${inter.variable} ${oswald.variable} antialiased scroll-smooth bg-background`}>
+      <body className="min-h-[100dvh] flex flex-col font-sans">
         <Header />
         <main className="flex-1 mt-[72px]">{children}</main>
         <Footer />

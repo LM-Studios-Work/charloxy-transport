@@ -131,24 +131,22 @@ export default function EstimateForm() {
             {showExtras ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
           </button>
           
-          {showExtras && (
-            <div className="absolute top-full left-0 right-0 z-50 mt-2 max-h-64 overflow-y-auto grid grid-cols-1 gap-3 rounded-xl border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-paper p-4 shadow-xl sm:grid-cols-2">
-              {movingExtras.map((extra) => (
-                <label key={extra.id} className="group flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white">
-                  <input 
-                    type="checkbox" 
-                    name="extras" 
-                    value={extra.name} 
-                    className="mt-1 size-4 shrink-0 rounded border-[color-mix(in_srgb,var(--navy)_30%,transparent)] text-navy focus:ring-navy" 
-                  />
-                  <div>
-                    <p className="text-sm font-semibold text-navy">{extra.name}</p>
-                    <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">{extra.description}</p>
-                  </div>
-                </label>
-              ))}
-            </div>
-          )}
+          <div className={`absolute top-full left-0 right-0 z-50 mt-2 max-h-64 overflow-y-auto grid-cols-1 gap-3 rounded-xl border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-paper p-4 shadow-xl sm:grid-cols-2 ${showExtras ? 'grid' : 'hidden'}`}>
+            {movingExtras.map((extra) => (
+              <label key={extra.id} className="group flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white">
+                <input 
+                  type="checkbox" 
+                  name="extras" 
+                  value={extra.name} 
+                  className="mt-1 size-4 shrink-0 rounded border-[color-mix(in_srgb,var(--navy)_30%,transparent)] text-navy focus:ring-navy" 
+                />
+                <div>
+                  <p className="text-sm font-semibold text-navy">{extra.name}</p>
+                  <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">{extra.description}</p>
+                </div>
+              </label>
+            ))}
+          </div>
         </div>
 
         <div className="md:col-span-2">
