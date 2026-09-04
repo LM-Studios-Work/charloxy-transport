@@ -4,8 +4,8 @@
 A confident, image-led moving company identity for residential, commercial, and long-distance transport. The interface should feel dependable, practical, and energetic rather than luxurious or overly corporate.
 
 ## Color palette
-- **Charloxy Navy** `#102B3A`: primary text, navigation, dark sections, overlays.
-- **Move Gold** `#F7BD32`: buttons, highlights, active states, estimate CTAs.
+- **Charloxy Navy** `#0E2632`: primary text, navigation, dark sections, overlays.
+- **Move Gold** `#E3AC25`: buttons, highlights, active states, estimate CTAs.
 - **Cloud Blue** `#EAF3F7`: review panels and soft section backgrounds.
 - **Paper White** `#FFFFFF`: page background, forms, cards.
 - **Slate** `#5D6C72`: supporting copy and metadata.
