@@ -1,6 +1,109 @@
-import Link from 'next/link';
-import { ArrowUpRight, Mail, Phone } from 'lucide-react';
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  Clock3,
+  Mail,
+  Phone,
+} from "lucide-react";
+
+const email = process.env.EMAIL || "info@charloxytransport.co.za";
+
+const navigation = [
+  { label: "About us", href: "/about" },
+  { label: "Our services", href: "/services" },
+  { label: "Contact", href: "/contact" },
+  { label: "Request a quote", href: "/quote" },
+];
+
+const services = [
+  { label: "Home & office moving", href: "/services/home-office-moving" },
+  { label: "Business transport", href: "/services/business-transport" },
+  { label: "Building materials", href: "/services/building-material-transport" },
+  { label: "Collections & deliveries", href: "/services/collections-deliveries" },
+  { label: "Furniture & appliances", href: "/services/furniture-appliance-deliveries" },
+  { label: "General goods transport", href: "/services/general-goods-transport" },
+];
 
 export default function Footer() {
-  return <footer className="bg-navy text-background"><div className="container-wide py-10 md:py-12"><div className="flex flex-col gap-8 border-b border-background/20 pb-8 lg:flex-row lg:items-end lg:justify-between"><div><p className="font-display text-sm uppercase tracking-[.16em] text-gold">Charloxy Transport</p><h2 className="display-tight mt-3 max-w-2xl text-5xl md:text-6xl">Move with <span className="text-gold">confidence.</span></h2></div><Link href="/quote" className="inline-flex w-fit items-center gap-3 rounded-full bg-gold px-6 py-3 font-semibold text-navy">Request a quote <ArrowUpRight size={18} /></Link></div><div className="grid gap-8 pt-8 sm:grid-cols-2 lg:grid-cols-4"><div><p className="font-display text-sm uppercase tracking-wide">The essentials</p><p className="mt-3 max-w-xs text-sm leading-6 text-background/65">Reliable. Safe. On Time. Your trusted partner for home, office, and business transport.</p></div><div><p className="font-display text-sm uppercase tracking-wide">Explore</p><div className="mt-3 flex flex-col gap-2 text-sm text-background/65"><Link href="/about" className="hover:text-gold">About Us</Link><Link href="/services" className="hover:text-gold">Services</Link><Link href="/contact" className="hover:text-gold">Contact</Link></div></div><div><p className="font-display text-sm uppercase tracking-wide">Contact</p><div className="mt-3 flex flex-col gap-2 text-sm text-background/65"><span className="flex items-center gap-2"><Phone size={15} className="text-gold" />+27 82 429 6737</span><span className="flex items-center gap-2"><Mail size={15} className="text-gold" />'info@charloxytransport.co.za'</span></div></div><div><p className="font-display text-sm uppercase tracking-wide">A division of</p><p className="mt-3 text-sm text-background/65">Charloxy Investment (Pty) Ltd.</p></div></div><p className="mt-8 text-xs text-background/45">&copy; {new Date().getFullYear()} Charloxy Transport. All rights reserved.</p></div></footer>;
+  return (
+    <footer className="bg-navy text-background" aria-labelledby="footer-heading">
+      <div className="container-wide">
+        <div className="flex flex-col gap-8 border-b border-background/15 py-14 md:py-20 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-2xl">
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-gold">
+              Charloxy Transport
+            </p>
+            <h2 id="footer-heading" className="display-tight mt-4 text-5xl md:text-7xl">
+              Move with <span className="text-gold">confidence.</span>
+            </h2>
+            <p className="mt-6 max-w-lg text-sm leading-6 text-background/65 md:text-base">
+              Professional transport for homes, offices, and businesses across South Africa. Planned carefully, handled safely, and delivered on time.
+            </p>
+          </div>
+
+          <Link
+            href="/quote"
+            className="group inline-flex w-fit items-center gap-3 rounded-full bg-gold px-6 py-3.5 font-semibold text-navy transition-transform hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gold"
+          >
+            Request a quote
+            <ArrowUpRight size={18} aria-hidden="true" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+
+        <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1fr_0.9fr_1.15fr_1.35fr] lg:gap-12 lg:py-16">
+          <div>
+            <p className="mt-6 max-w-xs text-sm leading-6 text-background/60">
+              Reliable. Safe. On Time. A transport partner you can count on from collection to delivery.
+            </p>
+          </div>
+
+          <nav aria-label="Footer navigation">
+            <p className="font-display text-sm uppercase tracking-[0.16em] text-gold">Explore</p>
+            <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/65">
+              {navigation.map((item) => (
+                <Link key={item.href} href={item.href} className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+
+          <nav aria-label="Footer services">
+            <p className="font-display text-sm uppercase tracking-[0.16em] text-gold">Services</p>
+            <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/65">
+              {services.map((item) => (
+                <Link key={item.href} href={item.href} className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+          </nav>
+
+          <div>
+            <p className="font-display text-sm uppercase tracking-[0.16em] text-gold">Get in touch</p>
+            <div className="mt-5 flex flex-col gap-4 text-sm text-background/65">
+              <a href="tel:+27824296737" className="flex items-center gap-3 transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
+                <Phone size={17} className="shrink-0 text-gold" aria-hidden="true" />
+                <span>+27 82 429 6737</span>
+              </a>
+              <a href={`mailto:${email}`} className="flex items-center gap-3 break-all transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
+                <Mail size={17} className="shrink-0 text-gold" aria-hidden="true" />
+                <span>{email}</span>
+              </a>
+              <p className="flex items-start gap-3">
+                <Clock3 size={17} className="mt-0.5 shrink-0 text-gold" aria-hidden="true" />
+                <span>Mon–Fri, 08:00–17:00<br />Saturday by appointment</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        <div className="flex flex-col gap-3 border-t border-background/15 py-6 text-xs text-background/45 md:flex-row md:items-center md:justify-between">
+          <p>© {new Date().getFullYear()} Charloxy Transport. All rights reserved.</p>
+          <p>A division of Charloxy Investment (Pty) Ltd.</p>
+        </div>
+      </div>
+    </footer>
+  );
 }
