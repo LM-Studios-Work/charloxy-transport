@@ -109,7 +109,7 @@ export default function BusinessTransportPage() {
         </div>
       </section>
 
-      <RelatedServices />
+      <RelatedServices currentSlug="business-transport" />
       
       <section className="container-wide pb-20">
         <div className="flex flex-col gap-6 rounded-[1.5rem] bg-navy p-8 md:flex-row md:items-center md:justify-between md:p-12">

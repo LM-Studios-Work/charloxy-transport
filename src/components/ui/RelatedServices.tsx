@@ -2,27 +2,49 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
 export const serviceLinks = [
-  { title: 'Furniture & Appliance Deliveries', slug: 'furniture-appliance-deliveries', copy: 'Bulky items moved safely, from store to door.' },
-  { title: 'Collections & Deliveries', slug: 'collections-deliveries', copy: 'Time-sensitive goods handled with care.' },
-  { title: 'Building Material Transport', slug: 'building-material-transport', copy: 'Reliable site deliveries across Johannesburg.' },
-  { title: 'General Goods Transport', slug: 'general-goods-transport', copy: 'Flexible transport for everyday business needs.' },
-  { title: 'Transport Services for Businesses', slug: 'business-transport', copy: 'Organised logistics that keep your operation moving.' },
+  { title: 'Home & Office Moving', slug: 'home-office-moving', copy: 'Residential & office moving handled with care.', image: '/moving_truck.jpg' },
+  { title: 'Furniture & Appliance Deliveries', slug: 'furniture-appliance-deliveries', copy: 'Bulky items moved safely, from store to door.', image: '/packing_furniture.jpg' },
+  { title: 'Collections & Deliveries', slug: 'collections-deliveries', copy: 'Time-sensitive goods handled with care.', image: '/handing_over_package.jpg' },
+  { title: 'Building Material Transport', slug: 'building-material-transport', copy: 'Reliable site deliveries across Johannesburg.', image: '/construction_material.jpg' },
+  { title: 'General Goods Transport', slug: 'general-goods-transport', copy: 'Flexible transport for everyday business needs.', image: '/packed_boxes.jpg' },
+  { title: 'Transport Services for Businesses', slug: 'business-transport', copy: 'Organised logistics that keep your operation moving.', image: '/loading_onto_van.jpg' },
 ];
 
-export default function RelatedServices() {
+export default function RelatedServices({ currentSlug }: { currentSlug?: string }) {
+  const filtered = currentSlug 
+    ? serviceLinks.filter(s => s.slug !== currentSlug) 
+    : serviceLinks;
+
   return (
     <section className="container-wide pb-20 md:pb-28">
       <div className="flex flex-col gap-4 border-b border-navy/15 pb-6 md:flex-row md:items-end md:justify-between">
         <div>
-
           <h2 className="display-tight mt-2 text-5xl text-navy md:text-6xl">More ways we can <span className="text-gold">help.</span></h2>
         </div>
         <Link href="/services" className="inline-flex items-center gap-2 text-sm font-semibold text-navy underline-offset-4 hover:underline">View all services <ArrowUpRight size={16} /></Link>
       </div>
-      <div className="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-5">
-        {serviceLinks.map((service, index) => (
-          <Link key={service.slug} href={`/services/${service.slug}`} className="group flex min-h-48 flex-col justify-end border border-navy/15 bg-paper p-5 transition-colors hover:bg-gold">
-            <div><h3 className="font-display text-2xl uppercase leading-none text-navy">{service.title}</h3><p className="mt-3 text-sm leading-6 text-ink-muted group-hover:text-navy/70">{service.copy}</p><ArrowUpRight className="mt-5 text-navy" size={18} /></div>
+      <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {filtered.slice(0, 5).map((service) => (
+          <Link
+            key={service.slug}
+            href={`/services/${service.slug}`}
+            className="group relative flex min-h-[280px] flex-col justify-end overflow-hidden rounded-2xl bg-navy p-6 transition-transform hover:-translate-y-1"
+          >
+            <img
+              src={service.image}
+              alt={service.title}
+              className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/60 to-navy/15" />
+            <div className="relative mb-auto flex items-start justify-end">
+              <span className="grid size-9 place-items-center rounded-full border border-gold/30 text-gold transition-transform group-hover:rotate-45 group-hover:bg-gold group-hover:text-navy">
+                <ArrowUpRight size={16} />
+              </span>
+            </div>
+            <div className="relative">
+              <h3 className="font-display text-2xl uppercase leading-none text-background">{service.title}</h3>
+              <p className="mt-2 text-xs leading-relaxed text-background/75">{service.copy}</p>
+            </div>
           </Link>
         ))}
       </div>
