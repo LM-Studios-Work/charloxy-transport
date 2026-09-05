@@ -67,7 +67,7 @@ export default function Header() {
             </span>
           </Link>
 
-          <div className="hidden flex-1 items-center justify-center gap-8 lg:flex">
+          <div className="hidden flex-1 items-center justify-center gap-4 xl:gap-8 lg:flex">
             {navigation.map((item) => item.name === 'Services' ? (
               <div key={item.href} className="relative flex items-center gap-1">
                 <Link
@@ -120,7 +120,7 @@ export default function Header() {
             ))}
           </div>
 
-          <div className="hidden items-center justify-end gap-5 lg:flex">
+          <div className="hidden items-center justify-end gap-2 xl:gap-5 lg:flex">
             <a href={phoneHref} className="flex items-center gap-2 text-navy transition-colors hover:text-gold">
               <span className="flex items-center justify-center rounded-full border-2 border-current p-1.5"><Phone size={14} className="fill-current" /></span>
               <span className="whitespace-nowrap text-lg font-bold">{phoneNumber}</span>
