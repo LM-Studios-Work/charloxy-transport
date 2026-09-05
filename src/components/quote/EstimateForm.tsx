@@ -3,13 +3,14 @@
 import { useRef, useState } from 'react';
 import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Loader2, UploadCloud, X } from 'lucide-react';
 import { movingExtras } from '@/data/movingExtras';
+import GoogleAddressInput from '@/components/ui/GoogleAddressInput';
 
 export default function EstimateForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [showExtras, setShowExtras] = useState(false);
-  
+
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -26,7 +27,7 @@ export default function EstimateForm() {
         return combined;
       });
     }
-    
+
     // Clear the input value so the exact same file can be selected again if needed
     // Deferring this slightly ensures the files are fully processed first
     setTimeout(() => {
@@ -46,7 +47,7 @@ export default function EstimateForm() {
     setStatus('idle');
     const form = event.currentTarget;
     const formData = new FormData(form);
-    
+
     // Override the images with our state since we can't easily mutate the input's FileList
     formData.delete('images');
     files.forEach((file) => formData.append('images', file));
@@ -72,7 +73,7 @@ export default function EstimateForm() {
     <form onSubmit={handleSubmit} className="rounded-[1.5rem] bg-background p-5 shadow-2xl md:p-7">
       <p className="display-tight text-3xl text-navy md:text-4xl">Request a free moving estimate</p>
       <p className="mt-2 text-sm leading-6 text-ink-muted">Tell us what you need moved and we&apos;ll prepare a clear estimate.</p>
-      
+
       {status === 'error' && (
         <div role="alert" className="mt-4 flex gap-2 rounded-xl bg-paper p-3 text-sm text-navy">
           <AlertCircle className="size-5 shrink-0 text-gold" />
@@ -85,60 +86,60 @@ export default function EstimateForm() {
           <label htmlFor="hero-name" className="sr-only">Full name</label>
           <input required id="hero-name" name="name" placeholder="Full name*" className="estimate-input" />
         </div>
-        
+
         <div>
           <label htmlFor="hero-phone" className="sr-only">Phone number</label>
           <input required id="hero-phone" name="phone" type="tel" placeholder="Phone number*" className="estimate-input" />
         </div>
-        
+
         <div>
           <label htmlFor="hero-email" className="sr-only">Email address</label>
           <input required id="hero-email" name="email" type="email" placeholder="Email address*" className="estimate-input" />
         </div>
-        
+
         <div className="min-w-0 relative">
           <label htmlFor="hero-date" className="sr-only">Preferred move date</label>
-          <input 
-            required 
-            id="hero-date" 
-            name="date" 
-            type="date" 
+          <input
+            required
+            id="hero-date"
+            name="date"
+            type="date"
             placeholder="Preferred move date*"
-            className="estimate-input min-w-0 max-w-full appearance-none" 
+            className="estimate-input min-w-0 max-w-full appearance-none"
           />
         </div>
-        
+
         <div className="md:col-span-2">
           <label htmlFor="hero-pickup" className="sr-only">Origin full address</label>
-          <input required id="hero-pickup" name="pickup" placeholder="Origin full address*" className="estimate-input" />
+          <GoogleAddressInput required id="hero-pickup" name="pickup" placeholder="Origin full address*" />
         </div>
-        
+
         <div className="md:col-span-2">
           <label htmlFor="hero-delivery" className="sr-only">Destination full address</label>
-          <input required id="hero-delivery" name="delivery" placeholder="Destination full address*" className="estimate-input" />
+          <GoogleAddressInput required id="hero-delivery" name="delivery" placeholder="Destination full address*" />
         </div>
-        
+
         <label htmlFor="hero-description" className="sr-only">Write your comment</label>
         <textarea id="hero-description" name="description" rows={3} placeholder="Write your comment" className="estimate-input resize-none md:col-span-2" />
 
         <div className="md:col-span-2 relative">
-          <button 
-            type="button" 
-            onClick={() => setShowExtras(!showExtras)} 
+          <button
+            type="button"
+            onClick={() => setShowExtras(!showExtras)}
             className="flex w-full items-center justify-between rounded-xl border border-[color-mix(in_srgb,var(--navy)_20%,transparent)] bg-paper px-4 py-3 text-sm font-semibold text-navy transition-colors hover:bg-white"
           >
             <span>Add Optional Packing & Moving Extras</span>
             {showExtras ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
           </button>
-          
+
           <div className={`absolute top-full left-0 right-0 z-50 mt-2 max-h-64 overflow-y-auto grid-cols-1 gap-3 rounded-xl border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-paper p-4 shadow-xl sm:grid-cols-2 ${showExtras ? 'grid' : 'hidden'}`}>
             {movingExtras.map((extra) => (
               <label key={extra.id} className="group flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white">
-                <input 
-                  type="checkbox" 
-                  name="extras" 
-                  value={extra.name} 
-                  className="mt-1 size-4 shrink-0 rounded border-[color-mix(in_srgb,var(--navy)_30%,transparent)] text-navy focus:ring-navy" 
+                <input
+                  type="checkbox"
+                  name="extras"
+                  value={extra.name}
+                  className="mt-1 size-4 shrink-0 rounded border-[color-mix(in_srgb,var(--navy)_30%,transparent)] text-navy focus:ring-navy"
                 />
                 <div>
                   <p className="text-sm font-semibold text-navy">{extra.name}</p>
@@ -160,12 +161,12 @@ export default function EstimateForm() {
                 </span> (Max 6)
               </p>
             </div>
-            <input 
-              name="images_temp" 
-              type="file" 
-              multiple 
-              accept="image/*" 
-              className="hidden" 
+            <input
+              name="images_temp"
+              type="file"
+              multiple
+              accept="image/*"
+              className="hidden"
               ref={fileInputRef}
               onChange={handleFileChange}
               disabled={files.length >= 6}
@@ -177,9 +178,9 @@ export default function EstimateForm() {
               {files.map((file, index) => (
                 <div key={`${file.name}-${index}`} className="flex items-center gap-2 rounded-lg border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-white px-3 py-1.5 text-xs text-navy shadow-sm">
                   <span className="max-w-[150px] truncate">{file.name}</span>
-                  <button 
-                    type="button" 
-                    onClick={() => removeFile(index)} 
+                  <button
+                    type="button"
+                    onClick={() => removeFile(index)}
                     className="text-ink-muted hover:text-red-500 transition-colors"
                     aria-label={`Remove ${file.name}`}
                   >

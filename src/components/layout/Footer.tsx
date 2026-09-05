@@ -13,6 +13,7 @@ const navigation = [
   { label: "Our services", href: "/services" },
   { label: "Contact", href: "/contact" },
   { label: "Request a quote", href: "/quote" },
+  { label: "Terms & Conditions", href: "/Charloxy_Transport_Terms_and_Conditions.pdf", external: true },
 ];
 
 const services = [
@@ -62,9 +63,21 @@ export default function Footer() {
             <p className="font-display text-sm uppercase tracking-[0.16em] text-gold">Explore</p>
             <div className="mt-5 flex flex-col items-start gap-3 text-sm text-background/65">
               {navigation.map((item) => (
-                <Link key={item.href} href={item.href} className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
-                  {item.label}
-                </Link>
+                item.external ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link key={item.href} href={item.href} className="transition-colors hover:text-gold focus-visible:text-gold focus-visible:outline-none">
+                    {item.label}
+                  </Link>
+                )
               ))}
             </div>
           </nav>
@@ -102,7 +115,18 @@ export default function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-background/15 py-6 text-xs text-background/45 md:flex-row md:items-center md:justify-between">
           <p>© {new Date().getFullYear()} Charloxy Transport. All rights reserved.</p>
-          <p>A division of Charloxy Investment (Pty) Ltd.</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p>A division of Charloxy Investment (Pty) Ltd.</p>
+            <span>•</span>
+            <a
+              href="/Charloxy_Transport_Terms_and_Conditions.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-background/70 hover:text-gold transition-colors underline underline-offset-4"
+            >
+              Terms &amp; Conditions
+            </a>
+          </div>
         </div>
       </div>
     </footer>

@@ -26,10 +26,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Extract files
+    // Extract files and check total attachment size
     const images = formData.getAll('images') as File[];
+    let totalSize = 0;
     const attachments = await Promise.all(
       images.filter((img) => img.size > 0).map(async (file) => {
+        totalSize += file.size;
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
         return {
@@ -38,6 +40,14 @@ export async function POST(request: Request) {
         };
       })
     );
+
+    // Resend has a payload limit of 10MB (including base64 encoding, so ~7MB raw files max)
+    if (totalSize > 7 * 1024 * 1024) {
+      return NextResponse.json(
+        { error: 'Total attachment size exceeds the 7MB limit. Please attach smaller photos or fewer images.' },
+        { status: 400 }
+      );
+    }
 
     const emailContent = `
       <h1>New Quote Request: Charloxy Transport</h1>
@@ -68,9 +78,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: true, message: 'Mock email sent successfully' });
     }
 
+    // Default to onboarding@resend.dev if custom domain is not yet verified in Resend Dashboard
+    const fromAddress = process.env.RESEND_FROM_EMAIL || 'Charloxy Quotes <onboarding@resend.dev>';
+
     // Send real email via Resend
     const data = await resend.emails.send({
-      from: 'Charloxy Quotes <quotes@charloxytransport.co.za>',
+      from: fromAddress,
       to: TARGET_EMAIL,
       subject: `New Quote Request from ${name}`,
       html: emailContent,
@@ -80,7 +93,7 @@ export async function POST(request: Request) {
 
     if (data.error) {
       console.error('Resend error:', data.error);
-      return NextResponse.json({ error: data.error.message }, { status: 500 });
+      return NextResponse.json({ error: data.error.message || 'Failed to send email' }, { status: 500 });
     }
 
     return NextResponse.json({ success: true, data });

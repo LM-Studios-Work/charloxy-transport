@@ -19,7 +19,7 @@ export default function Home() {
   return <div className="overflow-hidden bg-background">
     <section className="container-wide pt-5 pb-8 md:pt-7 md:pb-24">
       <div className="relative min-h-[540px] overflow-hidden rounded-[1.75rem] bg-navy lg:min-h-[700px] lg:flex lg:flex-row lg:justify-between">
-        <img src="/loading_onto_truck_hero.jpg" alt="Charloxy Transport loading onto truck" className="absolute inset-0 size-full object-cover" />
+        <img src="/loading_onto_truck_hero.jpg" alt="Charloxy Transport loading onto truck" className="absolute inset-0 size-full object-cover object-left lg:object-center" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/45 to-navy/10" />
         <div className="relative flex min-h-[540px] flex-col justify-end gap-5 p-7 md:min-h-0 md:p-12 lg:min-h-[700px] lg:justify-center lg:max-w-xl xl:max-w-2xl">
           <p className="font-display text-sm uppercase tracking-[.15em] text-gold">Reliable. Safe. On time.</p>
@@ -61,7 +61,7 @@ export default function Home() {
           </div>
           <p className="mt-6 max-w-lg text-base leading-7 text-ink-muted">We prioritize the safety of your belongings above everything else. For your complete peace of mind, every move with Charloxy Transport is automatically covered by up to R150,000 in Goods in Transit Insurance at no extra cost.</p>
         </div>
-        <div className="photo-card relative h-[360px] bg-navy md:h-[480px]"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=1100&q=85" alt="Professional movers carrying furniture" className="size-full object-cover" /><div className="absolute bottom-5 left-5 right-5 rounded-xl bg-gold p-5"><p className="font-display text-3xl uppercase text-navy">Ready to move?</p><Link href="/quote" className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Get a fast quote <ArrowRight size={16} /></Link></div></div>
+        <div className="photo-card relative h-[360px] bg-navy md:h-[480px]"><img src="/transit_insurance.jpg" alt="R150k Transit Insurance" className="size-full object-cover" /><div className="absolute bottom-5 left-5 right-5 rounded-xl bg-gold p-5"><p className="font-display text-3xl uppercase text-navy">Ready to move?</p><Link href="/quote" className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-navy underline underline-offset-4">Get a fast quote <ArrowRight size={16} /></Link></div></div>
       </div>
     </section>
 
