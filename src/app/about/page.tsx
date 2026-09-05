@@ -11,7 +11,7 @@ export default function About() {
   return <main className="overflow-hidden bg-background">
     <section className="container-wide pt-5 pb-16 md:pt-8 md:pb-24">
       <div className="relative min-h-[440px] overflow-hidden rounded-[1.75rem] bg-navy md:min-h-[540px]">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=2000&q=85" alt="Professional movers carrying furniture" className="absolute inset-0 size-full object-cover" />
+        <img src="/transit_insurance.jpg" alt="Charloxy Transport transit insurance" className="absolute inset-0 size-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/95 via-navy/65 to-navy/15" />
         <div className="relative flex min-h-[440px] max-w-3xl flex-col justify-end gap-5 p-7 md:min-h-[540px] md:p-12"><h1 className="display-tight text-5xl text-background md:text-7xl">Safe and Secure Delivery.<br className="hidden md:block"/> <span className="text-gold">Every Time.</span></h1><p className="max-w-xl text-base leading-7 text-background/80">Charloxy Transport is a growing logistics company based in Johannesburg, dedicated to providing reliable, personalized transport solutions.</p></div>
       </div>

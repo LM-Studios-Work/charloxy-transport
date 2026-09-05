@@ -23,7 +23,6 @@ const services = [
   { label: "Collections & deliveries", href: "/services/collections-deliveries" },
   { label: "Furniture & appliances", href: "/services/furniture-appliance-deliveries" },
   { label: "General goods transport", href: "/services/general-goods-transport" },
-  { label: "Packing & moving extras", href: "/moving-extras" },
 ];
 
 export default function Footer() {
