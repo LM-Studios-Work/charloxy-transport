@@ -7,7 +7,7 @@ const faqs = [
   { q: 'Do you provide moving blankets to protect the furniture?', a: 'Basic strapping is included to secure your items. Specialised moving blankets and covers are available as optional extras.' },
   { q: 'Do you give fixed rates or charge by the hour?', a: 'We typically provide fixed rates based on the inventory and distance, ensuring no surprise costs on moving day.' },
   { q: 'Are tolls all included in the rate?', a: 'Yes, our quoted rates are fully inclusive of all tolls and travel expenses.' },
-  { q: 'Do you provide storage?', a: 'Our team can provide more detail about our secure storage options when preparing your personalised moving estimate.' }
+  { q: 'Do you provide storage?', a: 'Storage is not currently offered as a standalone service. However, where storage is required as part of a move, please contact us and we’ll do our best to assist with suitable arrangements.' }
 ];
 const reviews = [
   ['Sipho M.', 'Charloxy Transport is a professional, honest company that has been in business for many years.'],

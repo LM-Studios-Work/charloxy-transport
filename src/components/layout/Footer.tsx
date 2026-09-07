@@ -105,7 +105,7 @@ export default function Footer() {
               </a>
               <p className="flex items-start gap-3">
                 <Clock3 size={17} className="mt-0.5 shrink-0 text-gold" aria-hidden="true" />
-                <span>Mon–Fri, 08:00–17:00<br />Saturday by appointment</span>
+                <span>Mon–Fri, 08:00–18:00<br />Saturday by appointment</span>
               </p>
             </div>
           </div>
