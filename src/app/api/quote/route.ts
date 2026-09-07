@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key');
-const TARGET_EMAIL = 'info@charloxytransport.co.za';
+const TARGET_EMAIL = 'charloxy@charloxytransport.co.za';
 
 export async function POST(request: Request) {
   try {
@@ -95,6 +95,44 @@ export async function POST(request: Request) {
       console.error('Resend error:', data.error);
       return NextResponse.json({ error: data.error.message || 'Failed to send email' }, { status: 500 });
     }
+
+    const autoReplyHtml = `
+      <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.5;">
+        <p>Thank you for contacting Charloxy Transport.</p>
+        <p>We've received your message and will get back to you as soon as possible.</p>
+        <p>If your enquiry is for a quotation, please include the following where possible:</p>
+        <ul style="margin-bottom: 20px;">
+          <li>Collection and delivery locations</li>
+          <li>Preferred date and time</li>
+          <li>Details of the items to be moved or delivered</li>
+          <li>Photos of the items, where applicable</li>
+        </ul>
+        <p>Providing these details will help us assist you faster and prepare an accurate quotation.</p>
+        <p>Thank you for considering Charloxy Transport. We look forward to assisting you.</p>
+        <br>
+        <p>Regards,</p>
+        <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px; font-size: 13px; color: #555; font-family: Arial, sans-serif;">
+          <tr>
+            <td style="padding-right: 15px; vertical-align: top;">
+              <img src="https://charloxytransport.co.za/brand-logo.jpg" alt="Charloxy Transport" width="180" style="display: block; max-width: 180px; height: auto;" />
+            </td>
+            <td style="vertical-align: top; line-height: 1.6; border-left: 1px solid #ddd; padding-left: 15px;">
+              <span style="color: #0056b3; font-weight: bold;">T:</span> <a href="tel:+27824296737" style="color: #0056b3; text-decoration: none;">+27 82 429 6737</a><br>
+              <span style="color: #0056b3; font-weight: bold;">E:</span> <a href="mailto:info@charloxytransport.co.za" style="color: #0056b3; text-decoration: none;">info@charloxytransport.co.za</a><br>
+              <span style="color: #0056b3; font-weight: bold;">W:</span> <a href="https://charloxytransport.co.za" style="color: #0056b3; text-decoration: none;">charloxytransport.co.za</a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    `;
+
+    // Send auto-reply to the customer
+    await resend.emails.send({
+      from: fromAddress,
+      to: email,
+      subject: `Re: New Quote Request from ${name}`,
+      html: autoReplyHtml,
+    });
 
     return NextResponse.json({ success: true, data });
   } catch (error: any) {

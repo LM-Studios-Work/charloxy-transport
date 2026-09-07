@@ -147,9 +147,10 @@ export default function ServicesSlider() {
         style={{ scrollSnapType: 'x mandatory', scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {services.map((service) => (
-          <article
+          <Link
+            href={`/services/${service.slug}`}
             key={service.title}
-            className="group photo-card relative shrink-0 bg-navy"
+            className="group photo-card relative shrink-0 bg-navy block"
             style={{
               minHeight: 360,
               width: 'calc(100vw - 2rem)',
@@ -167,7 +168,7 @@ export default function ServicesSlider() {
               <h3 className="font-display mt-2 text-3xl uppercase text-background">{service.title}</h3>
               <p className="mt-2 text-sm leading-6 text-background/75">{service.description}</p>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
       
