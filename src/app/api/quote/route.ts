@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_mock_key');
-const TARGET_EMAIL = 'info@charloxytransport.co.za';
+const TARGET_EMAIL = 'charloxy@charloxytransport.co.za';
 
 export async function POST(request: Request) {
   try {
@@ -106,21 +106,15 @@ export async function POST(request: Request) {
           
           <!-- Body -->
           <div style="padding: 40px 35px;">
-            <h2 style="margin-top: 0; color: #0e2632; font-size: 24px;">Thank you for contacting us, ${name}!</h2>
-            <p style="color: #5d6c72; font-size: 16px;">We've received your message and will get back to you as soon as possible.</p>
+            <h2 style="margin-top: 0; color: #0e2632; font-size: 24px;">Thank you for your quote request, ${name}!</h2>
+            <p style="color: #5d6c72; font-size: 16px;">We have successfully received your moving details.</p>
             
             <div style="background-color: #f4f6f3; border-left: 4px solid #e3ac25; padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0;">
-              <p style="margin-top: 0; font-weight: bold; color: #0e2632;">If your enquiry is for a quotation, please include the following where possible:</p>
-              <ul style="margin-bottom: 0; color: #5d6c72; padding-left: 20px;">
-                <li style="margin-bottom: 8px;">Collection and delivery locations</li>
-                <li style="margin-bottom: 8px;">Preferred date and time</li>
-                <li style="margin-bottom: 8px;">Details of the items to be moved</li>
-                <li>Photos of the items, where applicable</li>
-              </ul>
+              <p style="margin: 0; color: #5d6c72; line-height: 1.6;">Our team is currently reviewing your requirements. We will prepare an accurate quotation based on the information you provided and get back to you as soon as possible.</p>
             </div>
             
-            <p style="color: #5d6c72; font-size: 16px;">Providing these details will help us assist you faster and prepare an accurate quotation.</p>
-            <p style="color: #5d6c72; font-size: 16px; margin-bottom: 0;">We look forward to assisting you.</p>
+            <p style="color: #5d6c72; font-size: 16px;">If you forgot to include any important details, simply reply directly to this email.</p>
+            <p style="color: #5d6c72; font-size: 16px; margin-bottom: 0;">We look forward to assisting you with your move.</p>
           </div>
           
           <!-- Footer -->
