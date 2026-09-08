@@ -96,6 +96,55 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: data.error.message || 'Failed to send email' }, { status: 500 });
     }
 
+    const autoReplyHtml = `
+      <div style="font-family: Arial, sans-serif; color: #0e2632; line-height: 1.6; background-color: #f4f6f3; padding: 40px 20px;">
+        <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(14,38,50,0.08);">
+          <!-- Header -->
+          <div style="background-color: #0e2632; padding: 35px 30px; text-align: center; border-bottom: 6px solid #e3ac25;">
+            <img src="https://charloxytransport.co.za/brand-logo.jpg" alt="Charloxy Transport" width="220" style="display: block; margin: 0 auto; max-width: 100%; height: auto;" />
+          </div>
+          
+          <!-- Body -->
+          <div style="padding: 40px 35px;">
+            <h2 style="margin-top: 0; color: #0e2632; font-size: 24px;">Thank you for your quote request, ${name}!</h2>
+            <p style="color: #5d6c72; font-size: 16px;">We have successfully received your moving details.</p>
+            
+            <div style="background-color: #f4f6f3; border-left: 4px solid #e3ac25; padding: 20px; margin: 30px 0; border-radius: 0 8px 8px 0;">
+              <p style="margin: 0; color: #5d6c72; line-height: 1.6;">Our team is currently reviewing your requirements. We will prepare an accurate quotation based on the information you provided and get back to you as soon as possible.</p>
+            </div>
+            
+            <p style="color: #5d6c72; font-size: 16px;">If you forgot to include any important details, simply reply directly to this email.</p>
+            <p style="color: #5d6c72; font-size: 16px; margin-bottom: 0;">We look forward to assisting you with your move.</p>
+          </div>
+          
+          <!-- Footer -->
+          <div style="background-color: #0e2632; padding: 35px; color: #ffffff; font-size: 15px;">
+            <p style="margin: 0 0 12px 0; font-weight: bold; color: #e3ac25; font-size: 18px; text-transform: uppercase; letter-spacing: 1px;">Charloxy Transport</p>
+            <p style="margin: 0 0 20px 0; color: #ffffff; opacity: 0.8;">Reliable. Safe. On time.</p>
+            <table cellpadding="0" cellspacing="0" border="0" style="color: #ffffff; width: 100%;">
+              <tr>
+                <td style="padding-bottom: 8px;"><strong style="color: #e3ac25;">T:</strong> <a href="tel:+27824296737" style="color: #ffffff; text-decoration: none;">+27 82 429 6737</a></td>
+              </tr>
+              <tr>
+                <td style="padding-bottom: 8px;"><strong style="color: #e3ac25;">E:</strong> <a href="mailto:info@charloxytransport.co.za" style="color: #ffffff; text-decoration: none;">info@charloxytransport.co.za</a></td>
+              </tr>
+              <tr>
+                <td><strong style="color: #e3ac25;">W:</strong> <a href="https://charloxytransport.co.za" style="color: #ffffff; text-decoration: none;">charloxytransport.co.za</a></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Send auto-reply to the customer
+    await resend.emails.send({
+      from: fromAddress,
+      to: email,
+      subject: `Re: New Quote Request from ${name}`,
+      html: autoReplyHtml,
+    });
+
     return NextResponse.json({ success: true, data });
   } catch (error: any) {
     console.error('API Error:', error);

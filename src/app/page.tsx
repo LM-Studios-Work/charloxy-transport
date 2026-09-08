@@ -7,7 +7,7 @@ const faqs = [
   { q: 'Do you provide moving blankets to protect the furniture?', a: 'Basic strapping is included to secure your items. Specialised moving blankets and covers are available as optional extras.' },
   { q: 'Do you give fixed rates or charge by the hour?', a: 'We typically provide fixed rates based on the inventory and distance, ensuring no surprise costs on moving day.' },
   { q: 'Are tolls all included in the rate?', a: 'Yes, our quoted rates are fully inclusive of all tolls and travel expenses.' },
-  { q: 'Do you provide storage?', a: 'Our team can provide more detail about our secure storage options when preparing your personalised moving estimate.' }
+  { q: 'Do you provide storage?', a: 'Storage is not currently offered as a standalone service. However, where storage is required as part of a move, please contact us and we’ll do our best to assist with suitable arrangements.' }
 ];
 const reviews = [
   ['Sipho M.', 'Charloxy Transport is a professional, honest company that has been in business for many years.'],
@@ -112,6 +112,6 @@ export default function Home() {
     </section>
 
     <section className="container-wide pb-20 md:pb-28"><div className="mx-auto max-w-3xl"><p className="text-center font-display text-sm uppercase tracking-[.14em] text-gold">Frequently asked</p><h2 className="display-tight mt-3 text-center text-5xl text-navy md:text-6xl">Moving <span className="text-gold">questions</span></h2><div className="mt-10">{faqs.map((faq) => <details key={faq.q} className="group border-b border-navy/15 py-5 text-sm text-navy"><summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden"><span>{faq.q}</span><span className="grid size-6 shrink-0 place-items-center rounded-full bg-gold transition-transform group-open:rotate-45"><Plus size={14} /></span></summary><p className="max-w-2xl pt-4 leading-6 text-ink-muted">{faq.a}</p></details>)}</div></div></section>
-    <section className="bg-gold py-5"><div className="container-wide flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display text-2xl uppercase text-navy md:justify-between md:text-4xl"><span>Get an estimate</span><ArrowRight className="hidden md:block" /><span className="hidden md:block">Get an estimate</span><ArrowRight className="hidden md:block" /><span className="hidden md:block">Get an estimate</span></div></section>
+    <section className="bg-gold py-5"><Link href="/quote" className="container-wide flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-display text-2xl uppercase text-navy md:justify-between md:text-4xl hover:opacity-80 transition-opacity"><span>Get an estimate</span><ArrowRight className="hidden md:block" /><span className="hidden md:block">Get an estimate</span><ArrowRight className="hidden md:block" /><span className="hidden md:block">Get an estimate</span></Link></section>
   </div>;
 }
