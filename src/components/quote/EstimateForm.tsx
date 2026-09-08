@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Loader2, UploadCloud, X } from 'lucide-react';
+import { AlertCircle, CheckCircle2, ChevronDown, ChevronUp, Loader2, UploadCloud, X, Info } from 'lucide-react';
 import { movingExtras } from '@/data/movingExtras';
 import GoogleAddressInput from '@/components/ui/GoogleAddressInput';
 
@@ -10,6 +10,7 @@ export default function EstimateForm() {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const [showExtras, setShowExtras] = useState(false);
+  const [activeExtraInfo, setActiveExtraInfo] = useState<typeof movingExtras[0] | null>(null);
 
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -134,15 +135,27 @@ export default function EstimateForm() {
 
           <div className={`absolute top-full left-0 right-0 z-50 mt-2 max-h-64 overflow-y-auto grid-cols-1 gap-3 rounded-xl border border-[color-mix(in_srgb,var(--navy)_10%,transparent)] bg-paper p-4 shadow-xl sm:grid-cols-2 ${showExtras ? 'grid' : 'hidden'}`}>
             {movingExtras.map((extra) => (
-              <label key={extra.id} className="group flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white">
+              <label key={extra.id} className="group flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-2 transition-colors hover:bg-white relative">
                 <input
                   type="checkbox"
                   name="extras"
                   value={extra.name}
                   className="mt-1 size-4 shrink-0 rounded border-[color-mix(in_srgb,var(--navy)_30%,transparent)] text-navy focus:ring-navy"
                 />
-                <div>
-                  <p className="text-sm font-semibold text-navy">{extra.name}</p>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2">
+                    <p className="text-sm font-semibold text-navy">{extra.name}</p>
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setActiveExtraInfo(extra);
+                      }}
+                      className="rounded-full bg-ink-muted/10 p-0.5 text-ink-muted transition-colors hover:bg-navy hover:text-background focus:outline-none focus:ring-2 focus:ring-navy focus:ring-offset-2"
+                    >
+                      <Info size={14} />
+                    </button>
+                  </div>
                   <p className="mt-0.5 text-xs leading-relaxed text-ink-muted">{extra.description}</p>
                 </div>
               </label>
@@ -197,6 +210,23 @@ export default function EstimateForm() {
         {isSubmitting && <Loader2 className="size-5 animate-spin" />}
         {isSubmitting ? 'Sending...' : 'Get a quote'}
       </button>
+
+      {activeExtraInfo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/60 p-4 backdrop-blur-sm" onClick={() => setActiveExtraInfo(null)}>
+          <div className="w-full max-w-sm overflow-hidden rounded-2xl bg-background shadow-2xl animate-in fade-in zoom-in-95 duration-200" onClick={(e) => e.stopPropagation()}>
+            <div className="relative aspect-[4/3] w-full bg-navy/5">
+              <img src={activeExtraInfo.image} alt={activeExtraInfo.name} className="size-full object-cover" />
+              <button type="button" onClick={() => setActiveExtraInfo(null)} className="absolute right-3 top-3 rounded-full bg-background/70 p-2 text-navy backdrop-blur-md transition-colors hover:bg-background">
+                <X size={20} />
+              </button>
+            </div>
+            <div className="p-6 text-center">
+              <h3 className="font-display text-xl uppercase text-navy">{activeExtraInfo.name}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">{activeExtraInfo.description}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </form>
   );
 }
